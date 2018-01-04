@@ -20,6 +20,9 @@ return [
             'class' => 'yii\console\controllers\FixtureController',
             'namespace' => 'common\fixtures',
           ],
+        'dump' => [
+            'class' => 'hzhihua\\dump\\DumpController',
+        ],
     ],
     'components' => [
         'log' => [

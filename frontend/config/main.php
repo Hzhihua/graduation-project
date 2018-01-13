@@ -11,6 +11,8 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'language' => 'zh-CN',
+    'charset' => 'utf-8',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',

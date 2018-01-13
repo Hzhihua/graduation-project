@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string $title 文章标题
- * @property string $desription 文章简述
+ * @property string $description 文章简述
  * @property string $content 文章内容
  * @property int $is_top 文章是否置顶
  * @property int $status 文章状态(待审核?已审核?)
@@ -33,10 +33,10 @@ class Article extends BaseModel
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['title', 'desription', 'content', 'is_top', 'status', 'public_time', 'created_at', 'updated_at'], 'required'],
+            [['title', 'description', 'content', 'is_top', 'status', 'public_time', 'created_at', 'updated_at'], 'required'],
             [['content'], 'string'],
             [['is_top', 'status', 'public_time', 'created_at', 'updated_at'], 'integer'],
-            [['title', 'desription'], 'string', 'max' => 255],
+            [['title', 'description'], 'string', 'max' => 255],
         ]);
     }
                                                                                                                     
@@ -49,7 +49,7 @@ class Article extends BaseModel
             // 添加数据时允许接受的字段
             'insert' => [
                 'title',
-                'desription',
+                'description',
                 'content',
                 'is_top',
                 'status',
@@ -58,7 +58,7 @@ class Article extends BaseModel
             // 更新数据时允许接受的字段
             'update' => [
                 'title',
-                'desription',
+                'description',
                 'content',
                 'is_top',
                 'status',
@@ -75,7 +75,7 @@ class Article extends BaseModel
         return array_merge(parent::attributeLabels(), [
             'id' => Yii::t('common', 'ID'),
             'title' => Yii::t('common', 'Title'),
-            'desription' => Yii::t('common', 'Desription'),
+            'description' => Yii::t('common', 'Description'),
             'content' => Yii::t('common', 'Content'),
             'is_top' => Yii::t('common', 'Is Top'),
             'status' => Yii::t('common', 'Status'),

@@ -19,7 +19,7 @@ class m180113_135524_0_table_article extends Migration
         $this->runSuccess['createTable'] = $this->createTable('{{%article}}', [
             'id' => $this->integer(10)->unsigned()->notNull(),
             'title' => $this->string(255)->notNull()->comment('文章标题'),
-            'desription' => $this->string(255)->notNull()->comment('文章简述'),
+            'description' => $this->string(255)->notNull()->comment('文章简述'),
             'content' => $this->text()->notNull()->comment('文章内容'),
             'is_top' => $this->smallInteger(3)->unsigned()->notNull()->comment('文章是否置顶'),
             'status' => $this->smallInteger(10)->unsigned()->notNull()->comment('文章状态(待审核?已审核?)'),

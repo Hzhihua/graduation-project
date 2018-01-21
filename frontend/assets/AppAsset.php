@@ -9,15 +9,20 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $sourcePath = '@frontend/assets/static';
+//    public $basePath
+//    public $baseUrl = '@web/static';
     public $css = [
-        'css/site.css',
+        'style.css',
     ];
     public $js = [
+//        'busuanzi.pure.mini.js',
+        'main.min.js',
+//        'search.min.js',
+//        'waves.min.js',
     ];
-    public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
-    ];
+//    public $depends = [
+//        'frontend\\assets\\SearchAsset',
+//    ];
+
 }

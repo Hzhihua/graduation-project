@@ -13,6 +13,7 @@ return [
     'controllerNamespace' => 'frontend\controllers',
     'language' => 'zh-CN',
     'charset' => 'utf-8',
+    'defaultRoute' => 'index',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',

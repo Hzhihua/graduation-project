@@ -1,4 +1,10 @@
 <?php
+/**
+ * @Author: cnzhihua
+ * @Time: 18-1-22 10:38
+ * @Github: https://github.com/Hzhihua
+ */
+
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -45,16 +51,16 @@ $this->registerJs($js, View::POS_HEAD);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <?= $this->render('menu.php') ?>
+    <?= $this->render('menu-hide.php') ?>
     <main id="main">
         <?= $this->render('search.php') ?>
         <?= $this->render('share.php') ?>
-        <?= $this->render('header.php') ?>
+        <?= $this->render('header-article.php') ?>
         <div class="container body-wrap">
             <?= $content ?>
         </div>
-        <?= $this->render('footer.php') ?>
     </main>
+    <?= $this->render('footer.php') ?>
 </div>
 
 <?php $this->endBody() ?>

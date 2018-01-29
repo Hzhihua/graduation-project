@@ -67,6 +67,19 @@ class Article extends BaseModel
         ];
     }
 
+    public function beforeInsert()
+    {
+        if (!parent::beforeInsert()) {
+            return false;
+        }
+
+        if (empty($this->public_time)) {
+            $this->public_time = $_SERVER['REQUEST_TIME'];
+        }
+
+        return true;
+    }
+
     /**
      * @inheritdoc
      */

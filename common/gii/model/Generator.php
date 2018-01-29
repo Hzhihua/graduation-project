@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace gii\model;
+namespace common\gii\model;
 
 use Yii;
 use yii\db\ActiveQuery;

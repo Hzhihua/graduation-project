@@ -1,16 +1,13 @@
 <?php
-namespace common\models;
+namespace backend\models;
 
 use Yii;
-use yii\base\Model;
 
 /**
  * Login form
  */
-class LoginForm extends Model
+class LoginForm extends User
 {
-    public $username;
-    public $password;
     public $rememberMe = true;
 
     private $_user;
@@ -31,6 +28,20 @@ class LoginForm extends Model
         ];
     }
 
+    public function attributeLabels()
+    {
+        return array_merge(parent::attributeLabels(), [
+            'signIn' => Yii::t('backend', 'SignIn'),
+            'rememberMe' => Yii::t('backend', 'RememberMe'),
+        ]);
+    }
+
+//    public function getAttributeLabel($attribute)
+//    {
+//        $attributes = $this->activeAttributes();
+//        return $attributes[$attribute];
+//    }
+
     /**
      * Validates the password.
      * This method serves as the inline validation for password.
@@ -38,15 +49,15 @@ class LoginForm extends Model
      * @param string $attribute the attribute currently being validated
      * @param array $params the additional name-value pairs given in the rule
      */
-    public function validatePassword($attribute, $params)
-    {
-        if (!$this->hasErrors()) {
-            $user = $this->getUser();
-            if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
-            }
-        }
-    }
+//    public function validatePassword($attribute, $params)
+//    {
+//        if (!$this->hasErrors()) {
+//            $user = $this->getUser();
+//            if (!$user || !$user->validatePassword($this->password)) {
+//                $this->addError($attribute, 'Incorrect username or password.');
+//            }
+//        }
+//    }
 
     /**
      * Logs in a user using the provided username and password.

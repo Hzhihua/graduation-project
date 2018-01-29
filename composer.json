@@ -19,8 +19,8 @@
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "hzhihua/yii2-dump": "dev-master",
-        "dmstr/yii2-adminlte-asset": "^2.1",
-        "hzhihua/yii2-frappe-charts": "dev-master"
+        "hzhihua/yii2-frappe-charts": "dev-master",
+        "dmstr/yii2-adminlte-asset": "2.0@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

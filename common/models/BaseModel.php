@@ -13,21 +13,16 @@ use yii\db\ActiveRecord;
  * 数据库表basemodel
  * 所有的数据库表model继承于此model
  *
+ * @property $created_at int 创建时间
+ * @property $updated_at int 最新修改时间
  * @package common\models
  */
 class BaseModel extends ActiveRecord
 {
     /**
-     * 创建时间
-     * @var int
+     * 添加数据前操作
+     * @return bool
      */
-    public $created_at = 0;
-    /**
-     * 最新更改时间
-     * @var int
-     */
-    public $updated_at = 0;
-
     public function beforeInsert()
     {
         $time = $_SERVER['REQUEST_TIME'];
@@ -37,6 +32,10 @@ class BaseModel extends ActiveRecord
         return true;
     }
 
+    /**
+     * 更改数据前操作
+     * @return bool
+     */
     public function beforeUpdate()
     {
         $time = $_SERVER['REQUEST_TIME'];
@@ -45,6 +44,10 @@ class BaseModel extends ActiveRecord
         return true;
     }
 
+    /**
+     * @param bool $insert true insert | false update
+     * @return bool
+     */
     public function beforeSave($insert)
     {
         if (!parent::beforeSave($insert)) {

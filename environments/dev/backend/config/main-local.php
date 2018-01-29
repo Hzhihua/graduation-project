@@ -17,18 +17,24 @@ if (!YII_ENV_TEST) {
     ];
 
     // add class autoload
-    Yii::$classMap['gii\model\Generator'] = '@backend/../gii/model/Generator.php';
+    Yii::$classMap['common\gii\model\Generator'] = '@common/gii/model/Generator.php';
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
-        'generators' => [ //这里配置生成器
+        'generators' => [ // 这里配置生成器
             'model' => [ // 生成器名称
-                'class' => 'gii\model\Generator', // 生成器类
-                'templates' => [ //配置模版文件
-                    'myModel' => '@backend/../gii/model/default', // 模版名称 => 模版路径
+                'class' => 'common\gii\model\Generator', // 生成器类
+                'templates' => [ // 配置模版文件
+                    'myModel' => '@common/gii/model/default', // 模版名称 => 模版路径
                 ]
-            ]
+            ],
+            'crud' => [
+                'class' => 'yii\gii\generators\crud\Generator',
+                'templates' => [
+                    'adminlte' => '@backend/gii/crud/simple',
+                ]
+            ],
         ],
     ];
 }

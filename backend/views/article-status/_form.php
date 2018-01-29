@@ -1,11 +1,11 @@
 <?php
 
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use backend\helpers\Html;
+use backend\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\ArticleStatus */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $model \common\models\ArticleStatus */
+/* @var $this \backend\helpers\View */
+/* @var $form \backend\widgets\ActiveForm */
 ?>
 
 <div class="article-status-form box box-primary">
@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($model, 'sort')->textInput() ?>
 
-        <?= $form->field($model, 'is_allow_public')->textInput() ?>
+        <?= $form->field($model, 'is_allow_public')->dropDownList(['text' => '请选择', 0 => '否', 1 => '是']) ?>
 
     </div>
     <div class="box-footer">

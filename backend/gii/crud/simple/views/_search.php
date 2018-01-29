@@ -3,18 +3,20 @@
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 
-/* @var $this yii\web\View */
-/* @var $generator yii\gii\generators\crud\Generator */
+/* @var $this \yii\web\View */
+/* @var $generator \yii\gii\generators\crud\Generator */
+
+require_once __DIR__ . '/../helpers/AttributeHandle.php';
 
 echo "<?php\n";
 ?>
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use <?= AttributeHandle::getAppName($generator->controllerClass) ?>\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model <?= ltrim($generator->searchModelClass, '\\') ?> */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $model \<?= ltrim($generator->searchModelClass, '\\') ?> */
+/* @var $this \<?= AttributeHandle::getAppName($generator->controllerClass) ?>\helpers\View */
+/* @var $form \<?= AttributeHandle::getAppName($generator->controllerClass) ?>\widgets\ActiveForm */
 ?>
 
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-search">

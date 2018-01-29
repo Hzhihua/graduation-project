@@ -3,8 +3,8 @@
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 
-/* @var $this yii\web\View */
-/* @var $generator yii\gii\generators\crud\Generator */
+/* @var $this \yii\web\View */
+/* @var $generator \yii\gii\generators\crud\Generator */
 
 $urlParams = $generator->generateUrlParams();
 
@@ -13,12 +13,12 @@ require_once __DIR__ . '/../helpers/AttributeHandle.php';
 echo "<?php\n";
 ?>
 
-use yii\helpers\Html;
 use yii\widgets\DetailView;
-use <?= substr($generator->controllerClass, 0, strpos($generator->controllerClass, '\\'))?>\helpers\Date;
+use <?= AttributeHandle::getAppName($generator->controllerClass) ?>\helpers\Html;
+use <?= AttributeHandle::getAppName($generator->controllerClass) ?>\helpers\Date;
 
-/* @var $this yii\web\View */
-/* @var $model <?= ltrim($generator->modelClass, '\\') ?> */
+/* @var $this \<?= AttributeHandle::getAppName($generator->controllerClass) ?>\helpers\View */
+/* @var $model \<?= ltrim($generator->modelClass, '\\') ?> */
 
 $this->title = $model-><?= $generator->getNameAttribute() ?>;
 $this->params['breadcrumbs'][] = ['label' => <?= $generator->generateString(Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass)))) ?>, 'url' => ['index']];
@@ -58,6 +58,8 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
                 (stripos($column->name, 'time') !== false && $column->phpType === 'integer')
         ) {
             echo AttributeHandle::date($column->name) . ",\n";
+        } else if (stripos($column->name, 'is_') !== false) {
+            echo AttributeHandle::handleIsKeyWord($column->name) . ",\n";
         } else {
             $format = $generator->generateColumnFormat($column);
             echo "                '" . $column->name . ($format === 'text' ? "" : ":" . $format) . "',\n";

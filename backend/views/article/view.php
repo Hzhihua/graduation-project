@@ -1,11 +1,11 @@
 <?php
 
-use yii\helpers\Html;
 use yii\widgets\DetailView;
+use backend\helpers\Html;
 use backend\helpers\Date;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\Article */
+/* @var $this \backend\helpers\View */
+/* @var $model \common\models\Article */
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Articles'), 'url' => ['index']];
@@ -29,7 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'title',
                 'description',
                 'content:ntext',
-                'is_top',
+                [
+                    'attribute' => 'is_top',
+                    'value' => function ($model) {
+                        if ($model->is_top) return '是';
+                        else return '否';
+                    },
+                ],
                 'status',
                 [
                     'attribute' => 'public_time',

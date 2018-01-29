@@ -1,11 +1,11 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use backend\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model backend\models\search\ArticleSearch */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $model \backend\models\search\ArticleSearch */
+/* @var $this \backend\helpers\View */
+/* @var $form \backend\widgets\ActiveForm */
 ?>
 
 <div class="article-search">

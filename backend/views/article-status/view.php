@@ -1,11 +1,11 @@
 <?php
 
-use yii\helpers\Html;
 use yii\widgets\DetailView;
+use backend\helpers\Html;
 use backend\helpers\Date;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\ArticleStatus */
+/* @var $this \backend\helpers\View */
+/* @var $model \common\models\ArticleStatus */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Article Statuses'), 'url' => ['index']];
@@ -28,7 +28,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'attributes' => [
                 'name',
                 'sort',
-                'is_allow_public',
+                [
+                    'attribute' => 'is_allow_public',
+                    'value' => function ($model) {
+                        if ($model->is_allow_public) return '是';
+                        else return '否';
+                    },
+                ],
                 [
                     'attribute' => 'created_at',
                     'value' => function ($model) {

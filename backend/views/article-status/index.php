@@ -1,12 +1,12 @@
 <?php
 
-use yii\helpers\Html;
+use backend\helpers\Html;
 use yii\grid\GridView;
 use backend\helpers\Date;
 
-/* @var $this yii\web\View */
-/* @var $searchModel backend\models\search\ArticleStatusSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $this \backend\helpers\View */
+/* @var $searchModel \backend\models\search\ArticleStatusSearch */
+/* @var $dataProvider \yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('backend', 'Article Statuses');
 $this->params['breadcrumbs'][] = $this->title;
@@ -26,7 +26,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 'name',
                 'sort',
-                'is_allow_public',
+                [
+                    'attribute' => 'is_allow_public',
+                    'value' => function ($model) {
+                        if ($model->is_allow_public) return '是';
+                        else return '否';
+                    },
+                ],
                 [
                     'attribute' => 'created_at',
                     'value' => function ($model) {

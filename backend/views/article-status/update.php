@@ -1,9 +1,7 @@
 <?php
 
-use yii\helpers\Html;
-
-/* @var $this yii\web\View */
-/* @var $model common\models\ArticleStatus */
+/* @var $this \backend\helpers\View */
+/* @var $model \common\models\ArticleStatus */
 
 $this->title = Yii::t('backend', 'Update') . Yii::t('backend', 'Article Status') . $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Article Statuses'), 'url' => ['index']];

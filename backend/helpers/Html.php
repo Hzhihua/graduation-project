@@ -30,4 +30,10 @@ class Html extends \yii\helpers\Html
         $iTag = self::tag('i', '', $options['i']);
         return self::a($iTag, $options['url'], $options['a']);
     }
+
+    public static function activeDropDownList($model, $attribute, $items, $options = [])
+    {
+        $options = array_merge(['class' => 'form-control'], $options);
+        return parent::activeDropDownList($model, $attribute, $items, $options);
+    }
 }

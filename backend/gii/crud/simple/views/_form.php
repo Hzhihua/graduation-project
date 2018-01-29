@@ -3,25 +3,35 @@
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 
-/* @var $this yii\web\View */
-/* @var $generator yii\gii\generators\crud\Generator */
+/* @var $this \yii\web\View */
+/* @var $generator \yii\gii\generators\crud\Generator */
 
 /* @var $model \yii\db\ActiveRecord */
 $model = new $generator->modelClass();
-$safeAttributes = $model->safeAttributes();
+
+$model->setScenario('insert');
+$safeAttributes1 = $model->safeAttributes();
+
+$model->setScenario('update');
+$safeAttributes2 = $model->safeAttributes();
+
+$safeAttributes = array_merge($safeAttributes1, $safeAttributes2);
+
 if (empty($safeAttributes)) {
     $safeAttributes = $model->attributes();
 }
 
+require_once __DIR__ . '/../helpers/AttributeHandle.php';
+
 echo "<?php\n";
 ?>
 
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use <?= AttributeHandle::getAppName($generator->controllerClass) ?>\helpers\Html;
+use <?= AttributeHandle::getAppName($generator->controllerClass) ?>\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model <?= ltrim($generator->modelClass, '\\') ?> */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $model \<?= ltrim($generator->modelClass, '\\') ?> */
+/* @var $this \<?= AttributeHandle::getAppName($generator->controllerClass) ?>\helpers\View */
+/* @var $form \<?= AttributeHandle::getAppName($generator->controllerClass) ?>\widgets\ActiveForm */
 ?>
 
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-form box box-primary">
@@ -29,11 +39,12 @@ use yii\widgets\ActiveForm;
     <div class="box-body table-responsive">
 
 <?php foreach ($generator->getColumnNames() as $attribute) {
-    if ($attribute === 'updated_at' || $attribute === 'created_at' || in_array($attribute, $generator->tableSchema->primaryKey)) {
-        continue;
-    }
     if (in_array($attribute, $safeAttributes)) {
-        echo "        <?= " . $generator->generateActiveField($attribute) . " ?>\n\n";
+        if (stripos($attribute, 'is') !== false) {
+            echo "        <?= \$form->field(\$model, '$attribute')->dropDownList(['text' => '请选择', 0 => '否', 1 => '是']) ?>\n\n";
+        } else {
+            echo "        <?= " . $generator->generateActiveField($attribute) . " ?>\n\n";
+        }
     }
 } ?>
     </div>

@@ -3,8 +3,8 @@
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 
-/* @var $this yii\web\View */
-/* @var $generator yii\gii\generators\crud\Generator */
+/* @var $this \yii\web\View */
+/* @var $generator \yii\gii\generators\crud\Generator */
 
 $urlParams = $generator->generateUrlParams();
 $nameAttribute = $generator->getNameAttribute();
@@ -14,14 +14,14 @@ require_once __DIR__ . '/../helpers/AttributeHandle.php';
 echo "<?php\n";
 ?>
 
-use yii\helpers\Html;
+use <?= AttributeHandle::getAppName($generator->controllerClass) ?>\helpers\Html;
 use <?= $generator->indexWidgetType === 'grid' ? "yii\\grid\\GridView" : "yii\\widgets\\ListView" ?>;
 use <?= substr($generator->controllerClass, 0, strpos($generator->controllerClass, '\\'))?>\helpers\Date;
 <?= $generator->enablePjax ? 'use yii\widgets\Pjax;' : '' ?>
 
-/* @var $this yii\web\View */
-<?= !empty($generator->searchModelClass) ? "/* @var \$searchModel " . ltrim($generator->searchModelClass, '\\') . " */\n" : '' ?>
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $this \<?= AttributeHandle::getAppName($generator->controllerClass) ?>\helpers\View */
+<?= !empty($generator->searchModelClass) ? "/* @var \$searchModel \\" . ltrim($generator->searchModelClass, '\\') . " */\n" : '' ?>
+/* @var $dataProvider \yii\data\ActiveDataProvider */
 
 $this->title = <?= $generator->generateString(Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass)))) ?>;
 $this->params['breadcrumbs'][] = $this->title;
@@ -66,6 +66,8 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
             (stripos($column->name, 'time') !== false && $column->phpType === 'integer')
         ) {
             echo AttributeHandle::date($column->name) . ",\n";
+        } else if (stripos($column->name, 'is_') !== false) {
+            echo AttributeHandle::handleIsKeyWord($column->name) . ",\n";
         } else {
             $format = $generator->generateColumnFormat($column);
             echo "                '" . $column->name . ($format === 'text' ? "" : ":" . $format) . "',\n";

@@ -1,12 +1,12 @@
 <?php
 
-use yii\helpers\Html;
+use backend\helpers\Html;
 use yii\grid\GridView;
 use backend\helpers\Date;
 
-/* @var $this yii\web\View */
-/* @var $searchModel backend\models\search\ArticleSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $this \backend\helpers\View */
+/* @var $searchModel \backend\models\search\ArticleSearch */
+/* @var $dataProvider \yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('backend', 'Articles');
 $this->params['breadcrumbs'][] = $this->title;
@@ -27,7 +27,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'title',
                 'description',
                 'content:ntext',
-                'is_top',
+                [
+                    'attribute' => 'is_top',
+                    'value' => function ($model) {
+                        if ($model->is_top) return '是';
+                        else return '否';
+                    },
+                ],
                 'status',
                 [
                     'attribute' => 'public_time',

@@ -1,3 +1,10 @@
+<?php
+
+/* @var string $directoryAsset */
+use yii\bootstrap\Nav;
+use mdm\admin\components\MenuHelper;
+
+?>
 <aside class="main-sidebar">
 
     <section class="sidebar">
@@ -25,8 +32,14 @@
             </div>
         </form>
         <!-- /.search form -->
-
-        <?= dmstr\widgets\Menu::widget(
+        <?= Nav::widget(
+            [
+                "encodeLabels" => false,
+                "options" => ["class" => "sidebar-menu"],
+                "items" => MenuHelper::getAssignedMenu(Yii::$app->user->id),
+            ]
+        ) ?>
+        <?// = dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [

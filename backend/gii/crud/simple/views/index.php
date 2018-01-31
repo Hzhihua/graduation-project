@@ -10,16 +10,16 @@ $urlParams = $generator->generateUrlParams();
 $nameAttribute = $generator->getNameAttribute();
 
 require_once __DIR__ . '/../helpers/AttributeHandle.php';
-
+$appName = AttributeHandle::getAppName($generator->controllerClass);
 echo "<?php\n";
 ?>
 
-use <?= AttributeHandle::getAppName($generator->controllerClass) ?>\helpers\Html;
-use <?= $generator->indexWidgetType === 'grid' ? "yii\\grid\\GridView" : "yii\\widgets\\ListView" ?>;
+use <?= $appName ?>\helpers\Html;
+use <?= $generator->indexWidgetType === 'grid' ? "{$appName}\\grid\\GridView" : "{$appName}\\widgets\\ListView" ?>;
 use <?= substr($generator->controllerClass, 0, strpos($generator->controllerClass, '\\'))?>\helpers\Date;
-<?= $generator->enablePjax ? 'use yii\widgets\Pjax;' : '' ?>
+<?= $generator->enablePjax ? "use {$appName}\\widgets\\Pjax;" : '' ?>
 
-/* @var $this \<?= AttributeHandle::getAppName($generator->controllerClass) ?>\helpers\View */
+/* @var $this \yii\web\View */
 <?= !empty($generator->searchModelClass) ? "/* @var \$searchModel \\" . ltrim($generator->searchModelClass, '\\') . " */\n" : '' ?>
 /* @var $dataProvider \yii\data\ActiveDataProvider */
 

@@ -11,11 +11,11 @@ require_once __DIR__ . '/../helpers/AttributeHandle.php';
 echo "<?php\n";
 ?>
 
-use yii\helpers\Html;
+use <?= AttributeHandle::getAppName($generator->controllerClass) ?>\helpers\Html;
 use <?= AttributeHandle::getAppName($generator->controllerClass) ?>\widgets\ActiveForm;
 
 /* @var $model \<?= ltrim($generator->searchModelClass, '\\') ?> */
-/* @var $this \<?= AttributeHandle::getAppName($generator->controllerClass) ?>\helpers\View */
+/* @var $this \yii\web\View */
 /* @var $form \<?= AttributeHandle::getAppName($generator->controllerClass) ?>\widgets\ActiveForm */
 ?>
 

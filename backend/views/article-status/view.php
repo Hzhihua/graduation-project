@@ -1,10 +1,10 @@
 <?php
 
-use yii\widgets\DetailView;
+use backend\widgets\DetailView;
 use backend\helpers\Html;
 use backend\helpers\Date;
 
-/* @var $this \backend\helpers\View */
+/* @var $this \yii\web\View */
 /* @var $model \common\models\ArticleStatus */
 
 $this->title = $model->name;

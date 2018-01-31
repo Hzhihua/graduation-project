@@ -1,6 +1,6 @@
 <?php
 
-/* @var $this \backend\helpers\View */
+/* @var $this \yii\web\View */
 /* @var $model \common\models\Collection */
 
 $this->title = Yii::t('backend', 'Update') . Yii::t('backend', 'Collection') . $model->id;

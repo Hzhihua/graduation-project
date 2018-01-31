@@ -1,6 +1,6 @@
 <?php
 
-/* @var $this \backend\helpers\View */
+/* @var $this \yii\web\View */
 /* @var $model \common\models\Comment */
 
 $this->title = Yii::t('backend', 'Update') . Yii::t('backend', 'Comment') . $model->id;

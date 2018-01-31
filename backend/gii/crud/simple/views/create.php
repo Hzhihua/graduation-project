@@ -11,7 +11,7 @@ require_once __DIR__ . '/../helpers/AttributeHandle.php';
 echo "<?php\n";
 ?>
 
-/* @var $this \<?= AttributeHandle::getAppName($generator->controllerClass) ?>\helpers\View */
+/* @var $this \yii\web\View */
 /* @var $model \<?= ltrim($generator->modelClass, '\\') ?> */
 
 $this->title = <?= $generator->generateString('Create') ?> . <?= $generator->generateString(Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>;

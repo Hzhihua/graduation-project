@@ -1,6 +1,6 @@
 <?php
 
-/* @var $this \backend\helpers\View */
+/* @var $this \yii\web\View */
 /* @var $model \common\models\ArticleStatus */
 
 $this->title = Yii::t('backend', 'Update') . Yii::t('backend', 'Article Status') . $model->name;

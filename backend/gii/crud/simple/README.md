@@ -5,7 +5,8 @@
 4. 字段名称包含**is_**关键字，自动生成下拉列表
 5. 创建helpers 目录 [参考](https://github.com/Hzhihua/graduation-project/tree/master/backend/helpers)
 6. 创建widgets 目录 [参考](https://github.com/Hzhihua/graduation-project/tree/master/backend/widgets)
-7. 指定的Model Class需包含 **insert** **update** 场景 [参考](https://github.com/Hzhihua/graduation-project/tree/master/common/models)
+7. 创建grid 目录 [参考](https://github.com/Hzhihua/graduation-project/tree/master/backend/grid)
+8. 指定的Model Class需包含 **insert** **update** 场景 [参考](https://github.com/Hzhihua/graduation-project/tree/master/common/models)
 
 ## 使用
 ```ssh

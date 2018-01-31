@@ -30,7 +30,7 @@ use <?= AttributeHandle::getAppName($generator->controllerClass) ?>\helpers\Html
 use <?= AttributeHandle::getAppName($generator->controllerClass) ?>\widgets\ActiveForm;
 
 /* @var $model \<?= ltrim($generator->modelClass, '\\') ?> */
-/* @var $this \<?= AttributeHandle::getAppName($generator->controllerClass) ?>\helpers\View */
+/* @var $this \yii\web\View */
 /* @var $form \<?= AttributeHandle::getAppName($generator->controllerClass) ?>\widgets\ActiveForm */
 ?>
 

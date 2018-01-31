@@ -4,7 +4,7 @@ use backend\helpers\Html;
 use yii\grid\GridView;
 use backend\helpers\Date;
 
-/* @var $this \backend\helpers\View */
+/* @var $this \yii\web\View */
 /* @var $searchModel \backend\models\search\ArticleStatusSearch */
 /* @var $dataProvider \yii\data\ActiveDataProvider */
 

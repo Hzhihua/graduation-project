@@ -1,6 +1,6 @@
 <?php
 
-/* @var $this \backend\helpers\View */
+/* @var $this \yii\web\View */
 /* @var $model \common\models\SystemConfig */
 
 $this->title = Yii::t('backend', 'Create') . Yii::t('backend', 'System Config');

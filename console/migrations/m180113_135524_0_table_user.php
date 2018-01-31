@@ -20,7 +20,7 @@ class m180113_135524_0_table_user extends Migration
             'id' => $this->integer(10)->unsigned()->notNull(),
             'username' => $this->string(255)->notNull()->comment('用户名'),
             'auth_key' => $this->string(32)->null()->comment('保持登陆状态密钥'),
-            'password' => $this->char(60)->notNull()->comment('用户密码'),
+            'password' => $this->string(255)->notNull()->comment('用户密码'),
             'password_reset_token' => $this->string(255)->null()->comment('重置密码密钥'),
             'email' => $this->string(255)->notNull()->comment('用户邮箱'),
             'is_email_pass' => $this->smallInteger(3)->unsigned()->notNull()->comment('邮箱是否验证通过'),

@@ -15,8 +15,9 @@ class m180130_122417_2_key_menu extends Migration
      */
     public function safeUp()
     {
-        
+
         $this->addPrimaryKey(null, '{{%menu}}', 'id');
+        $this->addAutoIncrement('{{%menu}}', 'id', 'integer');
         $this->runSuccess['parent'] = $this->createIndex('parent', '{{%menu}}', 'parent', 0);
 
     }

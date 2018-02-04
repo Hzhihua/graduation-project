@@ -32,9 +32,19 @@ class ArticleController extends Controller
             'toc' => $this->toc(),
             'content' => $this->content(),
             'nav' => $this->nav(),
+            'comment' => $this->comment(),
         ];
 
         return $this->render('index', $data);
+    }
+
+    /**
+     * 获取评论信息
+     * @return string
+     */
+    public function comment()
+    {
+        return $this->renderPartial('comment');
     }
 
     /**

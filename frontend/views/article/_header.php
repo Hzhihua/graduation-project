@@ -51,7 +51,7 @@ use frontend\helpers\Date;
 
             <ul class="article-category-list">
                 <li class="article-category-list-item">
-                    <a class="article-category-list-link" href="http://blog.hzhihua.top/categories/%E7%AE%97%E6%B3%95-%E7%AC%AC%E5%9B%9B%E7%89%88/">
+                    <a class="article-category-list-link" href="">
                         算法(第四版)
                     </a>
                 </li>

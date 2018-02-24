@@ -12,18 +12,20 @@ $menu = [
 
 ];
 
+$close = isset($closeMenu) && !empty($closeMenu) ? 'class="hide"' : '';
+
 ?>
 
 <div id="loading" class=""></div>
 
-<aside id="menu">
+<aside id="menu" <?= $close ?> >
     <div class="inner flex-row-vertical">
         <a href="javascript:" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
             <i class="icon icon-lg icon-close"></i>
         </a>
         <div class="brand-wrap" style="background-image:url(<?= Url::to('/img/brand.jpg') ?>)">
             <div class="brand">
-                <a href="http://blog.hzhihua.top/" class="avatar waves-effect waves-circle waves-light">
+                <a href="<?= Url::to(['/index/index'])?>" class="avatar waves-effect waves-circle waves-light">
                     <?= Html::img(Url::to('https://avatars3.githubusercontent.com/u/18823393?s=460&v=4'))?>
                 </a>
                 <hgroup class="introduce">

@@ -4,10 +4,16 @@
  * @Time: 18-1-21 11:04
  * @Github: https://github.com/Hzhihua
  */
-/* @var $this \frontend\helpers\View */
+/**
+ * 分享链接按钮
+ */
 
 use frontend\helpers\View;
 use frontend\assets\ShareAsset;
+use frontend\helpers\Url;
+
+/* @var $this \frontend\helpers\View */
+
 ShareAsset::register($this);
 
 $js = <<<JS
@@ -16,9 +22,7 @@ JS;
 
 $this->registerJs($js, View::POS_HEAD);
 
-/**
- * 分享链接按钮
- */
+$currentUrl = Url::to(Url::current(), true);
 ?>
 
 <!--分享链接按钮-->
@@ -27,33 +31,33 @@ $this->registerJs($js, View::POS_HEAD);
 
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
-        <li class=" waves-effect waves-block">
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.hzhihua.top/&amp;title=%E9%BB%84%E5%BF%97%E5%8D%8E%E7%9A%84%E5%8D%9A%E5%AE%A2&amp;pic=https://avatars3.githubusercontent.com/u/18823393?s=460&amp;v=4" data-title="微博">
+        <li class="waves-effect waves-block">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=<?= $currentUrl ?>&amp;title=<?= $this->title ?>&amp;pic=" data-title="<?= Yii::t('frontend', 'Sina weibo') ?>">
                 <i class="icon icon-weibo"></i>
             </a>
         </li>
-        <li class=" waves-effect waves-block">
-            <a class="weixin share-sns wxFab" href="javascript:" data-title="微信">
+        <li class="waves-effect waves-block">
+            <a class="weixin share-sns wxFab" href="javascript:" data-title="<?= Yii::t('frontend', 'Wechat') ?>">
                 <i class="icon icon-weixin"></i>
             </a>
         </li>
-        <li class=" waves-effect waves-block">
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.hzhihua.top/&amp;title=%E9%BB%84%E5%BF%97%E5%8D%8E%E7%9A%84%E5%8D%9A%E5%AE%A2&amp;source=" data-title=" QQ">
+        <li class="waves-effect waves-block">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=<?= $currentUrl ?>&amp;title=<?= $this->title ?>&amp;source=" data-title="QQ">
                 <i class="icon icon-qq"></i>
             </a>
         </li>
-        <li class=" waves-effect waves-block">
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.hzhihua.top/" data-title=" Facebook">
+        <li class="waves-effect waves-block">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?= $currentUrl ?>" data-title="Facebook">
                 <i class="icon icon-facebook"></i>
             </a>
         </li>
-        <li class=" waves-effect waves-block">
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=%E9%BB%84%E5%BF%97%E5%8D%8E%E7%9A%84%E5%8D%9A%E5%AE%A2&amp;url=http://blog.hzhihua.top/&amp;via=http://blog.hzhihua.top" data-title=" Twitter">
+        <li class="waves-effect waves-block">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=<?= $this->title ?>&amp;url=<?= $currentUrl ?>&amp;via=<?= Yii::$app->getRequest()->hostInfo ?>" data-title="Twitter">
                 <i class="icon icon-twitter"></i>
             </a>
         </li>
-        <li class=" waves-effect waves-block">
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.hzhihua.top/" data-title=" Google+">
+        <li class="waves-effect waves-block">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=<?= $currentUrl ?>" data-title="Google+">
                 <i class="icon icon-google-plus"></i>
             </a>
         </li>

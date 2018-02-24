@@ -66,7 +66,9 @@ return [
             'suffix' => '',
             'rules' => [
 //                'admin/'=>'admin/default/index',
-                '<controller:[\w\-]+>/<id:[\w\-]+>'=>'<controller>/view',
+                'index/index' => '', // default route
+                '<controller:[\w\-]+>/index' => '<controller>', // default actionIndex
+                '<controller:[\w\-]+>/<id:[\d]+>'=>'<controller>/view',
 //                '<controller:[\w\-]+>/<action:[\w\-]+>'=>'<controller>/<action>',
 //                '<module:[\w\-]+>/<controller:[\w\-]+>/<action:[\w\-]+>' => '<module>/<controller>/<action>',
             ],

@@ -51,7 +51,7 @@ $this->registerJs($js, View::POS_HEAD);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <?= $this->render('menu-hide.php') ?>
+    <?= $this->render('menu.php', ['closeMenu' => 1]) ?>
     <main id="main">
         <?= $this->render('search.php') ?>
         <?= $this->render('share.php') ?>

@@ -127,7 +127,10 @@ class ArticleController extends Controller
      */
     public function share()
     {
-        return $this->renderPartial('_share');
+        $data = [
+            'data' => $this->getArticleData(),
+        ];
+        return $this->renderPartial('_share', $data);
     }
 
     /**

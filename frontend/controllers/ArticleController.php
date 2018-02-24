@@ -7,12 +7,22 @@
 
 namespace frontend\controllers;
 
-
+use Yii;
 use yii\web\Controller;
+use yii\web\BadRequestHttpException;
+use frontend\models\Article;
 
 class ArticleController extends Controller
 {
 
+    private $_id = 0;
+    private $_articleData = null;
+    private $_articleModel = null;
+
+    /**
+     * @param \yii\base\Action $action
+     * @return bool
+     */
     public function beforeAction($action)
     {
         if (!parent::beforeAction($action)) {
@@ -26,16 +36,28 @@ class ArticleController extends Controller
     /**
      * @return string
      */
-    public function actionIndex()
+    public function actionView()
     {
         $data = [
             'toc' => $this->toc(),
             'content' => $this->content(),
             'nav' => $this->nav(),
+            'header' => $this->header(),
             'comment' => $this->comment(),
         ];
 
         return $this->render('index', $data);
+    }
+
+    /**
+     * 获取文章标题信息
+     * @return string
+     */
+    public function header()
+    {
+        return $this->renderPartial('_header', [
+            'data' => $this->getArticleData(),
+        ]);
     }
 
     /**
@@ -44,7 +66,9 @@ class ArticleController extends Controller
      */
     public function comment()
     {
-        return $this->renderPartial('comment');
+        return $this->renderPartial('_comment', [
+            'model' => $this->getArticleModel(),
+        ]);
     }
 
     /**
@@ -56,9 +80,10 @@ class ArticleController extends Controller
         $data = [
             'copyright' => $this->copyright(),
             'footer' => $this->footer(),
+            'data' => $this->getArticleData(),
         ];
 
-        return $this->renderPartial('content', $data);
+        return $this->renderPartial('_content', $data);
     }
 
     /**
@@ -67,7 +92,9 @@ class ArticleController extends Controller
      */
     public function toc()
     {
-        return $this->renderPartial('toc');
+        return $this->renderPartial('_toc', [
+            'data' => $this->getArticleData(),
+        ]);
     }
 
     /**
@@ -76,7 +103,9 @@ class ArticleController extends Controller
      */
     public function copyright()
     {
-        return $this->renderPartial('copyright');
+        return $this->renderPartial('_copyright', [
+            'data' => $this->getArticleData(),
+        ]);
     }
 
     /**
@@ -85,8 +114,11 @@ class ArticleController extends Controller
      */
     public function footer()
     {
-        $share = $this->share();
-        return $this->renderPartial('footer', ['share' => $share]);
+        $data = [
+            'share' => $this->share(),
+            'data' => $this->getArticleData(),
+        ];
+        return $this->renderPartial('_footer', $data);
     }
 
     /**
@@ -95,7 +127,7 @@ class ArticleController extends Controller
      */
     public function share()
     {
-        return $this->renderPartial('share');
+        return $this->renderPartial('_share');
     }
 
     /**
@@ -104,6 +136,75 @@ class ArticleController extends Controller
      */
     public function nav()
     {
-        return $this->renderPartial('nav');
+        $data = [
+            'data' => $this->getArticleData(),
+        ];
+        return $this->renderPartial('_nav', $data);
+    }
+
+    /**
+     * @return array
+     * @throws BadRequestHttpException
+     */
+    public function getArticleData()
+    {
+        if (empty($this->_articleData)) {
+            $this->_id = Yii::$app->getRequest()->get('id');
+
+            if (empty($this->_id)) {
+                $errorMsg = Yii::t('frontend', 'params `id` is must.');
+                Yii::warning($errorMsg, __METHOD__);
+
+                YII_DEBUG ?: $errorMsg = Yii::t('frontend', 'Something error has been happened, please try it again later.');
+
+                throw new BadRequestHttpException($errorMsg);
+            }
+
+            $this->_articleData = Article::find()->where(['id' => $this->_id])->with('articleStatus', 'articleAndCategory', 'articleAndTag')->asArray()->one();
+        }
+
+        if (empty($this->_articleData)) {
+            $errorMsg = Yii::t('frontend', "Could not find any data for article id({id})", ['id' => $this->_id]);
+
+            YII_DEBUG ?: $errorMsg = Yii::t('frontend', 'Something error has been happened, please try it again later.');
+
+            Yii::warning($errorMsg, __METHOD__);
+            throw new BadRequestHttpException($errorMsg);
+        }
+
+        return $this->_articleData;
+    }
+
+    /**
+     * @return array|null|\yii\db\ActiveRecord
+     * @throws BadRequestHttpException
+     */
+    public function getArticleModel()
+    {
+        if (empty($this->_articleModel)) {
+            $id = Yii::$app->getRequest()->get('id');
+
+            if (empty($id)) {
+                $errorMsg = 'params `id` is must.';
+                Yii::warning($errorMsg, __METHOD__);
+
+                YII_DEBUG ?: $errorMsg = Yii::t('frontend', 'Something error has been happened, please try it again later.');
+
+                throw new BadRequestHttpException($errorMsg);
+            }
+
+            $this->_articleModel = Article::findOne(['id' => $this->_id]);
+        }
+
+        if (empty($this->_articleData)) {
+            $errorMsg = Yii::t('frontend', "Could not find any data for article id({id})", ['id' => $this->_id]);
+
+            YII_DEBUG ?: $errorMsg = Yii::t('frontend', 'Something error has been happened, please try it again later.');
+
+            Yii::warning($errorMsg, __METHOD__);
+            throw new BadRequestHttpException($errorMsg);
+        }
+
+        return $this->_articleModel;
     }
 }

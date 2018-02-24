@@ -55,7 +55,6 @@ $this->registerJs($js, View::POS_HEAD);
     <main id="main">
         <?= $this->render('search.php') ?>
         <?= $this->render('share.php') ?>
-        <?= $this->render('header-article.php') ?>
         <div class="container body-wrap">
             <?= $content ?>
         </div>

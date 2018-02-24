@@ -7,19 +7,25 @@
 /**
  * 文章头部
  */
+
+use frontend\helpers\Date;
+
+/* @var $data array */
+/* @var $this \frontend\helpers\View */
+
 ?>
 <header class="top-header" id="header">
     <div class="flex-row">
         <a href="javascript:" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
             <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">二分查找法</div>
+        <div class="flex-col header-title ellipsis"><?= $data['title'] ?></div>
 
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input id="key" class="search-input" autocomplete="off" placeholder="搜尋">
+            <input id="key" class="search-input" autocomplete="off" placeholder="<?= Yii::t('frontend', 'Search') ?>">
             <a href="javascript:" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -35,11 +41,11 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale in">
-        <h1 class="title">二分查找法</h1>
+        <h1 class="title"><?= $data['title'] ?></h1>
         <h5 class="subtitle">
 
-            <time datetime="2017-10-28T04:59:23.000Z" itemprop="datePublished" class="page-time">
-                2017-10-28
+            <time datetime="<?= Date::show($data['public_time'], 'Y-m-d\TH:i:s\Z') ?>" itemprop="datePublished" class="page-time">
+                <?= Date::show($data['public_time']) ?>
             </time>
 
 

@@ -30,4 +30,26 @@ class Html extends \yii\helpers\Html
         $iTag = self::tag('i', '', $options['i']);
         return self::a($iTag, $options['url'], $options['a']);
     }
+
+    /**
+     * Convert special HTML entities back to characters
+     * @param string $html
+     * @return string
+     * @see http://php.net/manual/zh/function.htmlspecialchars-decode.php
+     */
+    public static function htmlDecode($html)
+    {
+        return htmlspecialchars_decode($html);
+    }
+
+    /**
+     * Convert special characters to HTML entities
+     * @param string $html
+     * @return string
+     * @see http://php.net/manual/zh/function.htmlspecialchars.php
+     */
+    public static function htmlEncode($html)
+    {
+        return htmlspecialchars($html);
+    }
 }

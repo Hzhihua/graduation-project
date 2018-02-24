@@ -8,7 +8,7 @@
 namespace frontend\models;
 
 
-class Article
+class Article extends \hzhihua\articles\models\Article
 {
 
 }

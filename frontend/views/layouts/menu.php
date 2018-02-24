@@ -21,10 +21,10 @@ $menu = [
         <a href="javascript:" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
             <i class="icon icon-lg icon-close"></i>
         </a>
-        <div class="brand-wrap" style="background-image:url(<?= Url::to('img/brand.jpg') ?>)">
+        <div class="brand-wrap" style="background-image:url(<?= Url::to('/img/brand.jpg') ?>)">
             <div class="brand">
                 <a href="http://blog.hzhihua.top/" class="avatar waves-effect waves-circle waves-light">
-                    <?= Html::img(Url::to('img/18823393'))?>
+                    <?= Html::img(Url::to('https://avatars3.githubusercontent.com/u/18823393?s=460&v=4'))?>
                 </a>
                 <hgroup class="introduce">
                     <h5 class="nickname">Hzhihua</h5>
@@ -36,28 +36,28 @@ $menu = [
             <ul class="nav">
 
                 <li class="waves-block waves-effect">
-                    <a href="">
+                    <a href="<?= Url::to(['/index'])?>">
                         <i class="icon icon-lg icon-home"></i>
                         主页
                     </a>
                 </li>
 
                 <li class="waves-block waves-effect">
-                    <a href="http://blog.hzhihua.top/archives">
+                    <a href="<?= Url::to(['/archives'])?>">
                         <i class="icon icon-lg icon-archives"></i>
                         文档
                     </a>
                 </li>
 
                 <li class="waves-block waves-effect">
-                    <a href="http://blog.hzhihua.top/tags">
+                    <a href="<?= Url::to(['/tags'])?>">
                         <i class="icon icon-lg icon-tags"></i>
                         标签云
                     </a>
                 </li>
 
                 <li class="waves-block waves-effect">
-                    <a href="http://blog.hzhihua.top/categories">
+                    <a href="<?= Url::to(['/categories'])?>">
                         <i class="icon icon-lg icon-th-list"></i>
                         分类
                     </a>

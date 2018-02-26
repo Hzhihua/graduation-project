@@ -25,8 +25,8 @@ class TagsController extends Controller
     public function actionIndex()
     {
         $data = [
-            'data' => $this->getData()->asArray()->all(),
-            'tagsData' => $this->getAllTags()->asArray()->all(),
+            'data' => self::getData()->asArray()->all(),
+            'tagsData' => self::getAllTags()->asArray()->all(),
         ];
 
         // get tags by categories_id
@@ -49,7 +49,7 @@ class TagsController extends Controller
 
         $data = [
             'data' => $_data,
-            'tagsData' => $this->getAllTags()->asArray()->all(),
+            'tagsData' => self::getAllTags()->asArray()->all(),
         ];
 
         $data['article_tags'] = self::getArticleTagsByTagsId($id);
@@ -57,19 +57,25 @@ class TagsController extends Controller
         return $this->render('view', $data);
     }
 
-    public function getData($where = [])
+    /**
+     * @return ActiveRecord|ActiveQuery
+     */
+    public static function getData()
     {
-        return ArticleTag::find()->where($where)->with('articleAndTag');
+        return ArticleTag::find()->with('articleAndTag');
     }
 
-    public function getAllTags()
+    /**
+     * @return ActiveRecord|ActiveQuery
+     */
+    public static function getAllTags()
     {
         return ArticleTag::find()->orderBy(['created_at' => SORT_DESC]);
     }
 
     /**
      * @param $tag_id
-     * @return array|ActiveRecord[]
+     * @return array|ActiveRecord
      */
     public static function getArticleTagsByTagsId($tag_id)
     {

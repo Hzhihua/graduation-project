@@ -17,6 +17,7 @@ return [
     'Read More' => '阅读全文',
     'No comments found.' => '暂无评论。',
     'params `id` is must.' => '缺少参数`id`',
+    'Page not found' => '请求的页面未找到',
     'Could not find any data for article id({id})' => '空数据，文章ID({id})',
     'Something error has been happened, please try it again later.' => '发生了未知错误，请稍后再试。',
     'The above error occurred while the Web server was processing your request.' => '当服务器在处理您的请求的时候，出现了以上错误。',

@@ -7,11 +7,13 @@
 
 namespace frontend\controllers;
 
-use hzhihua\articles\models\ArticleAndTag;
+use Yii;
 use yii\web\Controller;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
+use yii\web\BadRequestHttpException;
+use hzhihua\articles\models\ArticleAndTag;
 use hzhihua\articles\models\ArticleTag;
 
 class TagsController extends Controller
@@ -34,10 +36,19 @@ class TagsController extends Controller
         return $this->render('index', $data);
     }
 
+    /**
+     * @param $id int tags_id
+     * @return string
+     * @throws BadRequestHttpException
+     */
     public function actionView($id)
     {
+        if (! ($_data = self::getData()->where(['id' => $id])->asArray()->one())) {
+            throw new BadRequestHttpException(Yii::t('frontend', 'page not found'));
+        }
+
         $data = [
-            'data' => $this->getData(['id' => $id])->asArray()->one(),
+            'data' => $_data,
             'tagsData' => $this->getAllTags()->asArray()->all(),
         ];
 

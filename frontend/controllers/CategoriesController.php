@@ -7,10 +7,12 @@
 
 namespace frontend\controllers;
 
+use Yii;
 use yii\web\Controller;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
+use yii\web\BadRequestHttpException;
 use hzhihua\articles\models\ArticleAndTag;
 use hzhihua\articles\models\ArticleCategory;
 use hzhihua\articles\models\ArticleAndCategory;
@@ -36,13 +38,18 @@ class CategoriesController extends Controller
     }
 
     /**
-     * @param $id
+     * @param $id int category_id
      * @return string
+     * @throws BadRequestHttpException
      */
     public function actionView($id)
     {
+        if (! ($_data = self::getData()->where(['id' => $id])->asArray()->one())) {
+            throw new BadRequestHttpException(Yii::t('frontend', 'Page not found'));
+        }
+
         $data = [
-            'data' => self::getData()->where(['id' => $id])->asArray()->one(),
+            'data' => $_data,
             'categoriesData' => self::getAllCategories()->asArray()->all(),
         ];
 

@@ -11,6 +11,7 @@ use frontend\helpers\Html;
 /* @var $data array */
 /* @var $tagsData array */
 /* @var $article_tags array */
+/* @var $article_categories array */
 /* @var $this \yii\web\View */
 
 $this->title = sprintf('%s -- %s',
@@ -35,18 +36,10 @@ $this->title = sprintf('%s -- %s',
                         <div class="post-meta">
                             <time class="post-time" title="<?= Date::show($data['created_at'], 'Y-m-d H:i:s') ?>" datetime="<?= Date::show($data['created_at'], 'Y-m-d\TH:i:s\Z') ?>" itemprop="datePublished"><?= Date::show($data['created_at'], 'Y-m-d') ?></time>
 
-                            <ul class="article-category-list">
-                                <li class="article-category-list-item">
-                                    <?= Html::a(
-                                        $data['name'],
-                                        [
-                                            '/tags/view',
-                                            'id' => $data['id']
-                                        ],
-                                        ['class' => 'article-category-list-link']
-                                    )?>
-                                </li>
-                            </ul>
+                            <?= $this->render('_article_categories', [
+                                'article_id' => $_v['article']['id'],
+                                'article_categories' => $article_categories,
+                            ])?>
 
                         </div>
 

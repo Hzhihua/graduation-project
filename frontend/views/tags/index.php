@@ -11,6 +11,7 @@ use frontend\helpers\Html;
 /* @var $data array */
 /* @var $tagsData array */
 /* @var $article_tags array */
+/* @var $article_categories array */
 /* @var $this \yii\web\View */
 
 $this->title = Yii::t('frontend', 'Tags List');
@@ -32,18 +33,10 @@ $this->title = Yii::t('frontend', 'Tags List');
                 <div class="post-meta">
                     <time class="post-time" title="<?= Date::show($__v['article']['public_time'], 'Y-m-d H:i:s') ?>" datetime="<?= Date::show($__v['article']['public_time'], 'Y-m-d\TH:i:s\Z') ?>" itemprop="datePublished"><?= Date::show($__v['article']['public_time'], 'Y-m-d') ?></time>
 
-                    <ul class="article-category-list">
-                        <li class="article-category-list-item">
-                            <?= Html::a(
-                                $_v['name'],
-                                [
-                                    '/tags/view',
-                                    'id' => $_v['id']
-                                ],
-                                ['class' => 'article-category-list-link']
-                            )?>
-                        </li>
-                    </ul>
+                    <?= $this->render('_article_categories', [
+                        'article_id' => $__v['article']['id'],
+                        'article_categories' => $article_categories,
+                    ]) ?>
 
                 </div>
 
@@ -79,7 +72,7 @@ $this->title = Yii::t('frontend', 'Tags List');
                 <?= $this->render('_article_tags', [
                     'article_id' => $__v['article']['id'],
                     'article_tags' => $article_tags,
-                ])?>
+                ]) ?>
 
             </article>
         </div>

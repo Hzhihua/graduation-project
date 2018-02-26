@@ -1,7 +1,7 @@
 <?php
 /**
  * @Author: cnzhihua
- * @Time: 18-1-21 10:07
+ * @Time: 18-2-25 08:39
  * @Github: https://github.com/Hzhihua
  */
 
@@ -14,7 +14,7 @@ use yii\helpers\ArrayHelper;
 use frontend\models\Article;
 use frontend\traits\ControllerTrait;
 
-class IndexController extends Controller
+class ArchivesController extends Controller
 {
     use ControllerTrait;
 
@@ -24,7 +24,7 @@ class IndexController extends Controller
      */
     public function actionIndex()
     {
-        $articleData = self::getData()->limit(10)->asArray()->all();
+        $articleData = self::getData()->asArray()->all();
         $article_id = ArrayHelper::getColumn($articleData, 'id');
 
         $data = [

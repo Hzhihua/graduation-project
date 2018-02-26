@@ -7,18 +7,20 @@
 
 namespace frontend\controllers;
 
+use frontend\traits\ControllerTrait;
 use Yii;
 use yii\web\Controller;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use yii\web\BadRequestHttpException;
-use hzhihua\articles\models\ArticleAndTag;
 use hzhihua\articles\models\ArticleCategory;
 use hzhihua\articles\models\ArticleAndCategory;
 
 class CategoriesController extends Controller
 {
+    use ControllerTrait;
+
     /**
      * default action
      * @return string
@@ -32,7 +34,9 @@ class CategoriesController extends Controller
 
         // get article_tags by categories_id
         $category_id = ArrayHelper::getColumn($data['categoriesData'], 'id');
-        $data['article_tags'] = self::getArticleTagsByCategoriesId($category_id);
+        $article_id = self::getArticleIdByCategoriesId($category_id);
+        $data['article_tags'] = self::getArticleTagsByArticleId($article_id);
+        $data['article_categories'] = self::getArticleCategoriesByArticleId($article_id);
 
         return $this->render('index', $data);
     }
@@ -54,7 +58,9 @@ class CategoriesController extends Controller
         ];
 
         // get article_tags by categories_id
-        $data['article_tags'] = self::getArticleTagsByCategoriesId($id);
+        $article_id = self::getArticleIdByCategoriesId($id);
+        $data['article_tags'] = self::getArticleTagsByArticleId($article_id);
+        $data['article_categories'] = self::getArticleCategoriesByArticleId($article_id);
 
         return $this->render('view', $data);
     }
@@ -67,7 +73,11 @@ class CategoriesController extends Controller
         return ArticleCategory::find()
             ->select(['id', 'name', 'description', 'created_at'])
             ->orderBy(['created_at' => SORT_DESC])
-            ->with('articleAndCategory');
+            ->with([
+                'articleAndCategory' => function (ActiveQuery $query) {
+                    $query->limit(2);
+                }
+            ]);
     }
 
     /**
@@ -81,33 +91,20 @@ class CategoriesController extends Controller
     }
 
     /**
-     * @param $categories
-     * @return array|ActiveRecord[]
+     * @param $categories_id int|array
+     * @return array
      */
-    public static function getArticleTagsByCategoriesId($categories)
+    public static function getArticleIdByCategoriesId($categories_id)
     {
         // get article_id by categories_id
         $article_category = ArticleAndCategory::find()
             ->select(['category_id','article_id'])
-            ->where(['category_id' => $categories])
+            ->where(['category_id' => $categories_id])
             ->asArray()
             ->all();
 
         // get unique value of array
-        $article_id = array_unique(ArrayHelper::getColumn($article_category, 'article_id'));
-
-        // get tags by article_id
-        return ArticleAndTag::find()
-            ->select(['article_id', 'tag_id'])
-            ->with([
-                'articleTag' => function (ActiveQuery $query) {
-                    $query->select('id,name');
-                }
-            ])
-            ->where(['article_id' => $article_id])
-            ->orderBy(['tag_id' => SORT_DESC])
-            ->asArray()
-            ->all();
+        return array_unique(ArrayHelper::getColumn($article_category, 'article_id'));
     }
 
 }

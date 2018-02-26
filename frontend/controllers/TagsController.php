@@ -13,11 +13,14 @@ use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use yii\web\BadRequestHttpException;
-use hzhihua\articles\models\ArticleAndTag;
+use frontend\traits\ControllerTrait;
 use hzhihua\articles\models\ArticleTag;
+use hzhihua\articles\models\ArticleAndTag;
 
 class TagsController extends Controller
 {
+    use ControllerTrait;
+
     /**
      * default action
      * @return string
@@ -31,7 +34,9 @@ class TagsController extends Controller
 
         // get tags by categories_id
         $tag_id = ArrayHelper::getColumn($data['tagsData'], 'id');
-        $data['article_tags'] = self::getArticleTagsByTagsId($tag_id);
+        $article_id = self::getArticleIdByTagsId($tag_id);
+        $data['article_tags'] = self::getArticleTagsByArticleId($article_id);
+        $data['article_categories'] = self::getArticleCategoriesByArticleId($article_id);
 
         return $this->render('index', $data);
     }
@@ -52,7 +57,9 @@ class TagsController extends Controller
             'tagsData' => self::getAllTags()->asArray()->all(),
         ];
 
-        $data['article_tags'] = self::getArticleTagsByTagsId($id);
+        $article_id = self::getArticleIdByTagsId($id);
+        $data['article_tags'] = self::getArticleTagsByArticleId($article_id);
+        $data['article_categories'] = self::getArticleCategoriesByArticleId($article_id);
 
         return $this->render('view', $data);
     }
@@ -74,10 +81,10 @@ class TagsController extends Controller
     }
 
     /**
-     * @param $tag_id
+     * @param $tag_id int|array
      * @return array|ActiveRecord
      */
-    public static function getArticleTagsByTagsId($tag_id)
+    public static function getArticleIdByTagsId($tag_id)
     {
         // get article_id by article_id
         $article_tag = ArticleAndTag::find()
@@ -87,20 +94,8 @@ class TagsController extends Controller
             ->all();
 
         // get unique value of array
-        $article_id = array_unique(ArrayHelper::getColumn($article_tag, 'article_id'));
+        return array_unique(ArrayHelper::getColumn($article_tag, 'article_id'));
 
-        // get tags by article_id
-        return ArticleAndTag::find()
-            ->select(['article_id', 'tag_id'])
-            ->with([
-                'articleTag' => function (ActiveQuery $query) {
-                    $query->select('id,name');
-                }
-            ])
-            ->where(['article_id' => $article_id])
-            ->orderBy(['tag_id' => SORT_DESC])
-            ->asArray()
-            ->all();
     }
 
 }

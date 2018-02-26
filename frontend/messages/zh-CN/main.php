@@ -6,8 +6,15 @@
  */
 
 return [
+    'All' => '全部',
+    'Categories' => '分类',
+    'Tags' => '标签云',
+    'Tags List' => '标签云列表',
+    'Categories List' => '分类列表',
+    'Archives' => '文档',
     'Search' => '搜索',
     'Counts' => '文章总阅读量',
+    'Read More' => '阅读全文',
     'No comments found.' => '暂无评论。',
     'params `id` is must.' => '缺少参数`id`',
     'Could not find any data for article id({id})' => '空数据，文章ID({id})',

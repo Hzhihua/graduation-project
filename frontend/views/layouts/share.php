@@ -8,11 +8,11 @@
  * 分享链接按钮
  */
 
-use frontend\helpers\View;
+use yii\web\View;
 use frontend\assets\ShareAsset;
 use frontend\helpers\Url;
 
-/* @var $this \frontend\helpers\View */
+/* @var $this \yii\web\View */
 
 ShareAsset::register($this);
 

@@ -11,7 +11,7 @@
 use frontend\helpers\Date;
 
 /* @var $data array */
-/* @var $this \frontend\helpers\View */
+/* @var $this \yii\web\View */
 
 ?>
 <header class="top-header" id="header">

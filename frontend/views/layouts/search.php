@@ -4,7 +4,7 @@
  * @Time: 18-1-21 11:10
  * @Github: https://github.com/Hzhihua
  */
-/* @var $this \frontend\helpers\View */
+/* @var $this \yii\web\View */
 
 use frontend\assets\SearchAsset;
 SearchAsset::register($this);

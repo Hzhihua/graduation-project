@@ -73,7 +73,7 @@ class TagsController extends Controller
      */
     public static function getArticleTagsByTagsId($tag_id)
     {
-        // get article_id by categories_id
+        // get article_id by article_id
         $article_tag = ArticleAndTag::find()
             ->select(['tag_id','article_id'])
             ->where(['tag_id' => $tag_id])

@@ -8,7 +8,7 @@
 namespace frontend\assets;
 
 
-use frontend\helpers\View;
+use yii\web\View;
 use yii\web\AssetBundle;
 
 class ShareAsset extends AssetBundle

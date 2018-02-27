@@ -7,6 +7,7 @@
 
 return [
     'All' => '全部',
+    'Home' => '首页',
     'Categories' => '分类',
     'Tags' => '标签云',
     'Tags List' => '标签云列表',
@@ -26,4 +27,8 @@ return [
     # share
     'Sina weibo' => '微博',
     'Wechat' => '微信',
+
+    'Sign in' => '登录',
+    'Login out' => '登出',
+    'Are you sure to logout?' => '确定要登出吗？',
 ];

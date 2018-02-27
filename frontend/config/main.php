@@ -59,15 +59,15 @@ return [
             // 是否启用严格解析，如启用严格解析，要求当前请求应至少匹配1个路由规则，
             // 否则认为是无效路由。
             // 这个选项仅在 enablePrettyUrl 启用后才有效。
-            'enableStrictParsing' => false,
+            'enableStrictParsing' => true,
             // 是否在URL中显示入口脚本。是对美化功能的进一步补充。
             'showScriptName' => false,
             // 指定续接在URL后面的一个后缀，如 .html 之类的。仅在 enablePrettyUrl 启用时有效。
             'suffix' => '',
             'rules' => [
 //                'admin/'=>'admin/default/index',
-                'index/index' => '', // default route
-                '<controller:[\w\-]+>/index' => '<controller>', // default actionIndex
+                '/' => 'index/index', // default route
+                '<controller:[\w\-]+>' => '<controller>/index', // default actionIndex
                 '<controller:[\w\-]+>/<id:[\d]+>'=>'<controller>/view',
 //                '<controller:[\w\-]+>/<action:[\w\-]+>'=>'<controller>/<action>',
 //                '<module:[\w\-]+>/<controller:[\w\-]+>/<action:[\w\-]+>' => '<module>/<controller>/<action>',

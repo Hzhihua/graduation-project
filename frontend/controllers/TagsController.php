@@ -12,7 +12,7 @@ use yii\web\Controller;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
-use yii\web\BadRequestHttpException;
+use yii\web\NotFoundHttpException;
 use frontend\traits\ControllerTrait;
 use hzhihua\articles\models\ArticleTag;
 use hzhihua\articles\models\ArticleAndTag;
@@ -44,12 +44,12 @@ class TagsController extends Controller
     /**
      * @param $id int tags_id
      * @return string
-     * @throws BadRequestHttpException
+     * @throws NotFoundHttpException
      */
     public function actionView($id)
     {
         if (! ($_data = self::getData()->where(['id' => $id])->asArray()->one())) {
-            throw new BadRequestHttpException(Yii::t('frontend', 'page not found'));
+            throw new NotFoundHttpException(Yii::t('frontend', 'page not found'));
         }
 
         $data = [

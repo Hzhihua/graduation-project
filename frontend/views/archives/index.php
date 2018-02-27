@@ -22,8 +22,6 @@ foreach ($data as $k => $v) {
 
 ?>
 
-<?= $this->render('_header') ?>
-
 <div class="container body-wrap fade in">
 
     <?php foreach ($_data as $_k => $_v): ?>

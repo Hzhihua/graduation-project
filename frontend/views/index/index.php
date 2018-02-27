@@ -13,9 +13,8 @@ use frontend\helpers\Html;
 /* @var $article_categories array */
 
 $this->title = '首页';
+$this->params['title'] = '黄志华的博客';
 ?>
-
-<?= $this->render('_header') ?>
 
 <div class="container body-wrap">
     <ul class="post-list">

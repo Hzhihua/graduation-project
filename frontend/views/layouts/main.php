@@ -45,11 +45,10 @@ $this->registerJs($js, View::POS_HEAD);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <?= $this->render('header') ?>
-    <?= $this->render('search') ?>
-    <?= $this->render('share') ?>
+    <?= $this->render('search_share') ?>
     <?= $this->render('menu') ?>
     <main id="main">
+        <?= $this->render('header') ?>
         <?= $content ?>
         <?= $this->render('footer') ?>
     </main>

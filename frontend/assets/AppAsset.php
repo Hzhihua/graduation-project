@@ -21,8 +21,9 @@ class AppAsset extends AssetBundle
 //        'search.min.js',
 //        'waves.min.js',
     ];
-//    public $depends = [
-//        'frontend\\assets\\SearchAsset',
-//    ];
+    public $depends = [
+        'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapAsset',
+    ];
 
 }

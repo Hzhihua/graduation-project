@@ -13,7 +13,7 @@ use yii\web\Controller;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
-use yii\web\BadRequestHttpException;
+use yii\web\NotFoundHttpException;
 use hzhihua\articles\models\ArticleCategory;
 use hzhihua\articles\models\ArticleAndCategory;
 
@@ -44,12 +44,12 @@ class CategoriesController extends Controller
     /**
      * @param $id int category_id
      * @return string
-     * @throws BadRequestHttpException
+     * @throws NotFoundHttpException
      */
     public function actionView($id)
     {
         if (! ($_data = self::getData()->where(['id' => $id])->asArray()->one())) {
-            throw new BadRequestHttpException(Yii::t('frontend', 'Page not found'));
+            throw new NotFoundHttpException(Yii::t('frontend', 'Page not found'));
         }
 
         $data = [
@@ -73,11 +73,7 @@ class CategoriesController extends Controller
         return ArticleCategory::find()
             ->select(['id', 'name', 'description', 'created_at'])
             ->orderBy(['created_at' => SORT_DESC])
-            ->with([
-                'articleAndCategory' => function (ActiveQuery $query) {
-                    $query->limit(2);
-                }
-            ]);
+            ->with('articleAndCategory');
     }
 
     /**

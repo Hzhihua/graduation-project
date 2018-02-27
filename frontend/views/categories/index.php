@@ -15,10 +15,9 @@ use frontend\helpers\Html;
 /* @var $this \yii\web\View */
 
 $this->title = Yii::t('frontend', 'Categories List');
+$this->params['bar'] = $this->render('_bar', ['categoriesData' => $categoriesData]);
 
 ?>
-
-<?= $this->render('_header', ['categoriesData' => $categoriesData]) ?>
 
 <div class="container body-wrap fade in">
 

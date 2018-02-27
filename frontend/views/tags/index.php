@@ -15,10 +15,9 @@ use frontend\helpers\Html;
 /* @var $this \yii\web\View */
 
 $this->title = Yii::t('frontend', 'Tags List');
+$this->params['bar'] = $this->render('_bar', ['tagsData' => $tagsData]);
 
 ?>
-
-<?= $this->render('_header', ['tagsData' => $tagsData]) ?>
 
 <div class="container body-wrap fade in">
 

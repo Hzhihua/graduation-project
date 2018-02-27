@@ -8,12 +8,18 @@
 use frontend\helpers\Url;
 use frontend\helpers\Html;
 
-$menu = [
-
-];
+/* @var $this \yii\web\View */
 
 $close = isset($closeMenu) && !empty($closeMenu) ? 'class="hide"' : '';
 
+$css = <<<'CSS'
+#menu .nav a {
+    padding-left: 57px;
+    padding-top: 1px;
+}
+CSS;
+
+$this->registerCss($css);
 ?>
 
 <div id="loading" class=""></div>
@@ -25,12 +31,19 @@ $close = isset($closeMenu) && !empty($closeMenu) ? 'class="hide"' : '';
         </a>
         <div class="brand-wrap" style="background-image:url(<?= Url::to('/img/brand.jpg') ?>)">
             <div class="brand">
-                <a href="<?= Url::to(['/index/index'])?>" class="avatar waves-effect waves-circle waves-light">
+                <a href="<?= Url::to(['/'])?>" class="avatar waves-effect waves-circle waves-light">
                     <?= Html::img(Url::to('https://avatars3.githubusercontent.com/u/18823393?s=460&v=4'))?>
                 </a>
                 <hgroup class="introduce">
                     <h5 class="nickname">Hzhihua</h5>
-                    <a href="mailto:cnzhihua@gmail.com" title="cnzhihua@gmail.com" class="mail">cnzhihua@gmail.com</a>
+                    <?= Html::a(
+                        'cnzhihua@gmail.com',
+                        'mailto:cnzhihua@gmail.com',
+                        [
+                            'class' => 'mail',
+                            'title' => 'cnzhihua@gmail.com',
+                        ]
+                    ) ?>
                 </hgroup>
             </div>
         </div>
@@ -38,30 +51,30 @@ $close = isset($closeMenu) && !empty($closeMenu) ? 'class="hide"' : '';
             <ul class="nav">
 
                 <li class="waves-block waves-effect">
-                    <a href="<?= Url::to(['/index'])?>">
+                    <a href="<?= Url::to(['/'])?>">
                         <i class="icon icon-lg icon-home"></i>
-                        主页
+                        <?= Yii::t('frontend', 'Home') ?>
                     </a>
                 </li>
 
                 <li class="waves-block waves-effect">
                     <a href="<?= Url::to(['/archives'])?>">
                         <i class="icon icon-lg icon-archives"></i>
-                        文档
+                        <?= Yii::t('frontend', 'Archives') ?>
                     </a>
                 </li>
 
                 <li class="waves-block waves-effect">
                     <a href="<?= Url::to(['/tags'])?>">
                         <i class="icon icon-lg icon-tags"></i>
-                        标签云
+                        <?= Yii::t('frontend', 'Tags') ?>
                     </a>
                 </li>
 
                 <li class="waves-block waves-effect">
                     <a href="<?= Url::to(['/categories'])?>">
                         <i class="icon icon-lg icon-th-list"></i>
-                        分类
+                        <?= Yii::t('frontend', 'Categories') ?>
                     </a>
                 </li>
 
@@ -70,6 +83,22 @@ $close = isset($closeMenu) && !empty($closeMenu) ? 'class="hide"' : '';
                         <i class="icon icon-lg icon-github"></i>
                         Github
                     </a>
+                </li>
+
+                <li class="waves-block waves-effect">
+                    <?php if (Yii::$app->getUser()->isGuest): ?>
+                    <a href="<?= Url::to(['/user/login'])?>">
+                        <i class="icon icon-lg icon-user"></i>
+                        <?= Yii::t('frontend', 'Sign in') ?>
+                    </a>
+
+                    <?php else: ?>
+                    <a href="<?= Url::to(['/user/logout'])?>" data-method="post" onclick="return confirm('<?= Yii::t('frontend', 'Are you sure to logout?') ?>')">
+                        <i class="icon icon-lg icon-user"></i>
+                        <?= Yii::$app->getUser()->identity->username ?>
+                    </a>
+                    <?php endif; ?>
+
                 </li>
 
             </ul>

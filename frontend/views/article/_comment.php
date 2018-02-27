@@ -6,6 +6,7 @@
  */
 
 use frontend\helpers\Url;
+use frontend\helpers\Html;
 use yii2mod\comments\widgets\Comment;
 
 /* @var $model \yii\db\ActiveRecord*/
@@ -16,6 +17,10 @@ $relatedTo = Yii::$app->getUser()->isGuest
         Yii::$app->getUser()->identity->username,
         Url::current()
         );
+
+$emptyText = Yii::t('frontend', 'No comments found.') . Yii::$app->getUser()->isGuest ?
+    Html::a(Yii::t('frontend', 'Post a comment'), ['/user/login'])
+    : '';
 
 ?>
 <?= Comment::widget([
@@ -28,6 +33,6 @@ $relatedTo = Yii::$app->getUser()->isGuest
         ],
     ],
     'listViewConfig' => [
-        'emptyText' => Yii::t('frontend', 'No comments found.'),
+        'emptyText' => $emptyText,
     ],
 ]); ?>

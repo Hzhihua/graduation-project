@@ -14,14 +14,10 @@ use frontend\helpers\Html;
 /* @var $categoriesData array */
 /* @var $this \yii\web\View */
 
-$this->title = sprintf('%s -- %s',
-    $data['name'],
-    Yii::t('frontend', 'Categories')
-);
+$this->title = $data['name'];
+$this->params['bar'] = $this->render('_bar', ['categoriesData' => $categoriesData]);
 
 ?>
-
-<?= $this->render('_header', ['categoriesData' => $categoriesData]) ?>
 
 <div class="container body-wrap fade in">
     <?php if ('view' === Yii::$app->controller->action->id):?>

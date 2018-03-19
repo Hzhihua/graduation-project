@@ -10,7 +10,7 @@ wget https://raw.githubusercontent.com/composer/getcomposer.org/1b137f8bf6db3e79
 ```
 php composer.phar config --global github-oauth.github.com <TOKEN>
 php composer.phar global require fxp/composer-asset-plugin
-php composer.phar install
+php composer.phar update
 ```
 ### step2 检查环境是否支持yii2框架
 需在环境变量中添加php安装路径
@@ -24,9 +24,6 @@ php init
 ### step4 数据迁移(migrate)
 需先配置数据库信息 *common/config/main-local.php*
 ```
-php yii migrate/up --migrationPath=@vendor/yiisoft/yii2/rbac/migrations
-php yii migrate/up --migrationPath=@vendor/mdmsoft/yii2-admin/migrations
-php yii migrate/up --migrationPath=@vendor/hzhihua/yii2-articles/migrations
 php yii migrate
 ```
 ### step5 生产环境优化自动加载

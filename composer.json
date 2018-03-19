@@ -18,10 +18,15 @@
         "yiisoft/yii2": "~2.0.6",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
-        "hzhihua/yii2-dump": "dev-master",
+        "hzhihua/yii2-dump": "^1.0.2@dev",
+        "hzhihua/yii2-articles": "dev-master",
         "hzhihua/yii2-frappe-charts": "dev-master",
         "dmstr/yii2-adminlte-asset": "2.*",
-        "mdmsoft/yii2-admin": ">3"
+        "mdmsoft/yii2-admin": "^2.0@dev",
+        "dektrium/yii2-user": "^0.9.0@dev",
+        "yii2mod/yii2-comments": "*",
+        "mdmsoft/yii2-captcha": "~1.0",
+        "developit/yii2-captcha": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
@@ -31,7 +36,8 @@
         "codeception/verify": "~0.3.1"
     },
     "config": {
-        "process-timeout": 1800
+        "process-timeout": 1800,
+        "github-protocols": ["https", "http"]
     },
     "repositories": [
         {

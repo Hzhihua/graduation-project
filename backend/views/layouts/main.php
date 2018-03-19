@@ -4,23 +4,14 @@ use backend\helpers\Html;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+backend\assets\AppAsset::register($this);
+dmstr\web\AdminLteAsset::register($this);
 
-if (Yii::$app->controller->action->id === 'login') { 
-/**
- * Do not use this code in your template. Remove it. 
- * Instead, use the code  $this->layout = '//main-login'; in your controller.
- */
-    echo $this->render(
-        'main-login',
-        ['content' => $content]
-    );
-} else {
-
-    backend\assets\AppAsset::register($this);
-    dmstr\web\AdminLteAsset::register($this);
-
-    $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
-    ?>
+$directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
+?>
+<?php if ('login' === Yii::$app->controller->action->id): ?>
+    <?= $this->render('main-login', ['content' => $content]) ?>
+<?php else: ?>
     <?php $this->beginPage() ?>
     <!DOCTYPE html>
     <html lang="<?= Yii::$app->language ?>">
@@ -38,7 +29,7 @@ if (Yii::$app->controller->action->id === 'login') {
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
     </head>
-    <body class="hold-transition <?= \dmstr\helpers\AdminLteHelper::skinClass() ?> sidebar-mini">
+    <body class="hold-transition <?= \dmstr\helpers\AdminLteHelper::skinClass() ?> sidebar-mini" <?= isset($this->closeMenu) ? 'sidebar-collapse' : ''?>>
     <?php $this->beginBody() ?>
     <div class="wrapper">
 
@@ -47,11 +38,7 @@ if (Yii::$app->controller->action->id === 'login') {
             ['directoryAsset' => $directoryAsset]
         ) ?>
 
-        <?= $this->render(
-            'left.php',
-            ['directoryAsset' => $directoryAsset]
-        )
-        ?>
+        <?= $this->render('left.php', ['directoryAsset' => $directoryAsset]) ?>
 
         <?= $this->render(
             'content.php',
@@ -64,4 +51,4 @@ if (Yii::$app->controller->action->id === 'login') {
     </body>
     </html>
     <?php $this->endPage() ?>
-<?php } ?>
+<?php endif; ?>

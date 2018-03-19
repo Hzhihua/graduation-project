@@ -13,6 +13,7 @@ return [
     # user table
     'Username' => '用户名',
     'Password' => '密码',
+    'Password Hash' => '密码',
 
     # article table
     'Title' => '标题',

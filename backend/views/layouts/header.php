@@ -1,10 +1,12 @@
 <?php
-use yii\helpers\Html;
+
+use backend\helpers\Date;
+use backend\helpers\Html;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
-?>
 
+?>
 <header class="main-header">
 
     <?= Html::a('<span class="logo-mini">APP</span><span class="logo-lg">' . Yii::$app->name . '</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
@@ -229,18 +231,29 @@ use yii\helpers\Html;
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                        <span class="hidden-xs">Alexander Pierce</span>
+                        <?= Html::img(
+                            'https://avatars3.githubusercontent.com/u/18823393?s=460&v=4',
+                            [
+                                'class' => 'user-image',
+                                'alt' => Yii::t('backend', 'User Image'),
+                            ]
+                        ) ?>
+                        <span class="hidden-xs"><?= Yii::$app->getUser()->identity->username ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle"
-                                 alt="User Image"/>
+                            <?= Html::img(
+                                'https://avatars3.githubusercontent.com/u/18823393?s=460&v=4',
+                                [
+                                    'class' => 'img-circle',
+                                    'alt' => Yii::t('backend', 'User Image'),
+                                ]
+                            ) ?>
 
                             <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
+                                <?= Yii::$app->getUser()->identity->username ?>
+                                <small><?= Date::show(Yii::$app->getUser()->identity->created_at, 'Y-m-d') ?></small>
                             </p>
                         </li>
                         <!-- Menu Body -->
@@ -258,11 +271,20 @@ use yii\helpers\Html;
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <?= Html::a(
+                                    Yii::t('backend', 'Profile'),
+                                    [
+                                        '/user/admin/info',
+                                        [
+                                            'id' => Yii::$app->getUser()->identity->getId()
+                                        ],
+                                    ],
+                                    ['class' => 'btn btn-default btn-flat']
+                                ) ?>
                             </div>
                             <div class="pull-right">
                                 <?= Html::a(
-                                    'Sign out',
+                                    Yii::t('backend', 'Sign Out'),
                                     ['/site/logout'],
                                     ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
                                 ) ?>

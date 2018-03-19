@@ -2,14 +2,31 @@
 namespace backend\models;
 
 use Yii;
+use common\models\User;
+use yii\base\Model;
+use yii\base\NotSupportedException;
 
 /**
  * Login form
  */
-class LoginForm extends User
+class LoginForm extends Model
 {
+    public $verifyCode = '123';
+    /**
+     * @var string
+     */
+    public $username = '';
+    /**
+     * @var string
+     */
+    public $password = '';
+    /**
+     * @var bool
+     */
     public $rememberMe = true;
-
+    /**
+     * @var User
+     */
     private $_user;
 
 
@@ -28,19 +45,19 @@ class LoginForm extends User
         ];
     }
 
+    /**
+     * @inheritdoc
+     * @return array
+     */
     public function attributeLabels()
     {
-        return array_merge(parent::attributeLabels(), [
+        return [
+            'username' => Yii::t('common', 'Username'),
+            'password' => Yii::t('common', 'Password Hash'),
             'signIn' => Yii::t('backend', 'SignIn'),
             'rememberMe' => Yii::t('backend', 'RememberMe'),
-        ]);
+        ];
     }
-
-//    public function getAttributeLabel($attribute)
-//    {
-//        $attributes = $this->activeAttributes();
-//        return $attributes[$attribute];
-//    }
 
     /**
      * Validates the password.
@@ -48,16 +65,20 @@ class LoginForm extends User
      *
      * @param string $attribute the attribute currently being validated
      * @param array $params the additional name-value pairs given in the rule
+     * @throws NotSupportedException
      */
-//    public function validatePassword($attribute, $params)
-//    {
-//        if (!$this->hasErrors()) {
-//            $user = $this->getUser();
-//            if (!$user || !$user->validatePassword($this->password)) {
-//                $this->addError($attribute, 'Incorrect username or password.');
-//            }
-//        }
-//    }
+    public function validatePassword($attribute, $params)
+    {
+        if (!$this->hasErrors()) {
+            $user = $this->getUser();
+            if (!$user || !$user->validatePassword($this->password)) {
+                $this->addError($attribute, 'Incorrect username or password.');
+            }
+        }
+        if (!empty($params)) {
+            throw new NotSupportedException("Not support params: {$params}.");
+        }
+    }
 
     /**
      * Logs in a user using the provided username and password.

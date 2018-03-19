@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\captcha\Captcha;
 
 /* @var $this \yii\web\View */
 /* @var $form \yii\bootstrap\ActiveForm */
@@ -54,6 +55,16 @@ $fieldOptions2 = [
                 <?= Html::submitButton($model->getAttributeLabel('signIn'), ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
             </div>
             <!-- /.col -->
+        </div>
+
+        <div class="row">
+            <div class="col-xs-8">
+            <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+                'template' =>
+                    '<div class="row"><div class="col-lg-12">{image}</div><div class="col-lg-12">{input}</div></div>',
+            ])
+            ?>
+            </div>
         </div>
 
 

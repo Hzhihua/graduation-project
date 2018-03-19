@@ -52,7 +52,7 @@ class ArticleTest extends Unit
             ],
         ];
 
-        $this->_model = new Article();
+//        $this->_model = new Article();
     }
 
     protected function _after()
@@ -117,11 +117,19 @@ class ArticleTest extends Unit
         expect(array_shift($errors), $last_id)->false();
     }
 
-    public function testTitleField()
+//    public function testTitleField()
+//    {
+//        $this->titleField();
+//        $this->titleEmpty();
+//        $this->titleTooLong();
+//    }
+
+    public function testI18N()
     {
-        $this->titleField();
-        $this->titleEmpty();
-        $this->titleTooLong();
+        /* @var $model \hzhihua\yii2_articles\models\Article */
+        $model = new \hzhihua\yii2_articles\models\Article();
+        $this->assertTrue($model->getAttributeLabel('ID'), '序号');
+        $this->assertTrue($model->getAttributeLabel('Created At'), '创建时间');
     }
 
 

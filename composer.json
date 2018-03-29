@@ -37,7 +37,15 @@
     },
     "config": {
         "process-timeout": 1800,
-        "github-protocols": ["https", "http"]
+        "github-protocols": ["https", "http"],
+		"fxp-asset": {
+			"repositories": {
+				"bower-asset/eve": {
+					"type": "bower-vcs",
+					"url": "https://github.com/adobe-webplatform/eve.git"
+				}
+			}
+		}
     },
     "repositories": [
         {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "213df0a5e01bf88d6d44c4055e0b6838",
+    "content-hash": "92bf48a32cb31f6fab562ad3f82c9576",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -301,7 +301,7 @@
             "version": "4.17.47",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Eonasdan/bootstrap-datetimepicker.git",
+                "url": "git@github.com:Eonasdan/bootstrap-datetimepicker.git",
                 "reference": "25c11d79e614bc6463a87c3dd9cbf8280422e006"
             },
             "dist": {
@@ -443,7 +443,7 @@
             "version": "v0.12.4",
             "source": {
                 "type": "git",
-                "url": "git@github.com:selectize/selectize.js.git",
+                "url": "https://github.com/selectize/selectize.js.git",
                 "reference": "47e048662d865c4f1ea3b2337de5e06e92fd9530"
             },
             "dist": {
@@ -1199,20 +1199,20 @@
         },
         {
             "name": "hzhihua/yii2-dump",
-            "version": "1.0.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Hzhihua/yii2-dump.git",
-                "reference": "28399ff47b83aa1a8212bab96cf4d35e0fe2939e"
+                "reference": "97908a534bcb1269c2a4af97ac56cb49ef679d06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/Hzhihua/yii2-dump/28399ff47b83aa1a8212bab96cf4d35e0fe2939e.zip",
-                "reference": "28399ff47b83aa1a8212bab96cf4d35e0fe2939e",
+                "url": "https://files.phpcomposer.com/files/Hzhihua/yii2-dump/97908a534bcb1269c2a4af97ac56cb49ef679d06.zip",
+                "reference": "97908a534bcb1269c2a4af97ac56cb49ef679d06",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.0",
+                "php": ">=5.5.0",
                 "yiisoft/yii2": "~2.0.6"
             },
             "type": "yii2-extension",
@@ -1242,7 +1242,7 @@
                 "migration",
                 "yii2"
             ],
-            "time": "2018-01-31T07:23:45+00:00"
+            "time": "2018-03-27T07:36:56+00:00"
         },
         {
             "name": "hzhihua/yii2-frappe-charts",

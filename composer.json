@@ -14,7 +14,7 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=5.5.0",
         "yiisoft/yii2": "~2.0.6",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
@@ -25,7 +25,6 @@
         "mdmsoft/yii2-admin": "^2.0@dev",
         "dektrium/yii2-user": "^0.9.0@dev",
         "yii2mod/yii2-comments": "*",
-        "mdmsoft/yii2-captcha": "~1.0",
         "developit/yii2-captcha": "*"
     },
     "require-dev": {

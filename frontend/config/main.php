@@ -32,7 +32,7 @@ return [
         'user' => [
             'identityClass' => 'dektrium\user\models\User',
             'enableAutoLogin' => true,
-            'loginUrl' => ['/user/login'],
+            'loginUrl' => ['/user/security/login'],
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
         'session' => [

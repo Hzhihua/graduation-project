@@ -54,7 +54,7 @@ return [
         'user' => [
             'identityClass' => 'dektrium\user\models\User',
             'enableAutoLogin' => true,
-            'loginUrl' => ['/user/login'],
+            'loginUrl' => ['/user/security/login'],
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
         'session' => [
@@ -77,6 +77,9 @@ return [
             'bundles' => [
                 'dmstr\web\AdminLteAsset' => [
                     'skin' => 'skin-blue',
+                ],
+                'mdm\admin\AutocompleteAsset' => [
+                    'sourcePath' => '@backend/assets/source/mdm-admin-autocompleteAsset'
                 ],
             ],
         ],

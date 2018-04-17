@@ -4,12 +4,12 @@ use backend\helpers\Html;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-backend\assets\AppAsset::register($this);
+$appBundle = backend\assets\AppAsset::register($this);
 dmstr\web\AdminLteAsset::register($this);
 
 $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
 ?>
-<?php if ('login' === Yii::$app->controller->action->id): ?>
+<?php if ('login' === Yii::$app->controller->action->id || Yii::$app->getUser()->isGuest): ?>
     <?= $this->render('main-login', ['content' => $content]) ?>
 <?php else: ?>
     <?php $this->beginPage() ?>
@@ -35,14 +35,17 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed201
 
         <?= $this->render(
             'header.php',
-            ['directoryAsset' => $directoryAsset]
+            [
+                'directoryAsset' => $directoryAsset,
+                'appBundle' => $appBundle,
+            ]
         ) ?>
 
-        <?= $this->render('left.php', ['directoryAsset' => $directoryAsset]) ?>
+        <?= $this->render('left.php', ['directoryAsset' => $directoryAsset, 'appBundle' => $appBundle]) ?>
 
         <?= $this->render(
             'content.php',
-            ['content' => $content, 'directoryAsset' => $directoryAsset]
+            ['content' => $content, 'directoryAsset' => $directoryAsset, 'appBundle' => $appBundle]
         ) ?>
 
     </div>

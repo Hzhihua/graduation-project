@@ -5,6 +5,7 @@ use backend\helpers\Html;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
+/* @var $appBundle \backend\assets\AppAsset */
 
 ?>
 <header class="main-header">
@@ -232,7 +233,7 @@ use backend\helpers\Html;
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <?= Html::img(
-                            'https://avatars3.githubusercontent.com/u/18823393?s=460&v=4',
+                            $appBundle->baseUrl . '/images/avatar.jpg',
                             [
                                 'class' => 'user-image',
                                 'alt' => Yii::t('backend', 'User Image'),
@@ -244,7 +245,7 @@ use backend\helpers\Html;
                         <!-- User image -->
                         <li class="user-header">
                             <?= Html::img(
-                                'https://avatars3.githubusercontent.com/u/18823393?s=460&v=4',
+                                $appBundle->baseUrl . '/images/avatar.jpg',
                                 [
                                     'class' => 'img-circle',
                                     'alt' => Yii::t('backend', 'User Image'),

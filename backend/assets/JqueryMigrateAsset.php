@@ -1,13 +1,11 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: cnzhihua
- * Date: 18-4-17
- * Time: 下午3:57
+ * @Author: cnzhihua
+ * @Date: 18-4-17 15:57
+ * @Github: https://github.com/Hzhihua
  */
 
 namespace backend\assets;
-
 
 use yii\web\AssetBundle;
 
@@ -20,5 +18,9 @@ class JqueryMigrateAsset extends AssetBundle
         // 'https://code.jquery.com/jquery-migrate-3.0.0.min.js',
 
         'js/jquery-migrate-3.0.0.min.js',
+    ];
+
+    public $depends = [
+        'yii\web\JqueryAsset',
     ];
 }

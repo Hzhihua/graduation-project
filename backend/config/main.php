@@ -22,14 +22,14 @@ return [
             'class' => 'dektrium\user\Module',
             'defaultRoute' => 'admin/index',
             // 'admins' => ['root'], // array An array of administrator's usernames
-            'adminPermission' => 'root', // string The Administrator permission name
+            'adminPermission' => 'admin', // string The Administrator permission name
         ],
         'comment' => [ // https://packagist.org/packages/yii2mod/yii2-comments
             'class' => 'yii2mod\comments\Module',
         ],
         'rbac' => 'dektrium\rbac\RbacWebModule',
 
-        // must for articles
+        // must for article
         'gridview' =>  [
             'class' => 'kartik\grid\Module'
         ],
@@ -62,7 +62,8 @@ return [
             'name' => 'advanced-backend',
         ],
         'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
+//            'traceLevel' => YII_DEBUG ? 3 : 0,
+            'traceLevel' => 0,
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
@@ -83,15 +84,15 @@ return [
                 ],
             ],
         ],
-        /*
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app'
+                    '@vendor/yii2mod/yii2-comments/views/manage' => '@backend/views/comment-manage', // comment module
+                    '@vendor/mdmsoft/yii2-admin/views/menu' => '@backend/views/admin-menu', // admin module
+//                    '@vendor/dektrium/yii2-user/views/security' => '@backend/views/user-security',
                 ],
             ],
         ],
-        */
         'urlManager' => [    
             //用于表明urlManager是否启用URL美化功能，在Yii1.1中称为path格式URL，    
             // Yii2.0中改称美化。   
@@ -120,8 +121,10 @@ return [
         'allowActions' => [
             //这里是允许访问的action
             //controller/action
-//            'user/*',
-            '*',
+//            '*',
+//            'site/captcha',
+            'user/security/logout',
+            'user/security/login',
         ]
     ],
 ];

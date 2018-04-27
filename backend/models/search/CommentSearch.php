@@ -18,8 +18,8 @@ class CommentSearch extends Comment
     public function rules()
     {
         return [
-            [['id', 'art_id', 'user_id', 'is_top', 'to_comment_id', 'status', 'count_up', 'created_at', 'updated_at'], 'integer'],
-            [['comment'], 'safe'],
+            [['id', 'entityId', 'parentId', 'level', 'createdBy', 'updatedBy', 'status', 'createdAt', 'updatedAt'], 'integer'],
+            [['entity', 'content', 'relatedTo', 'url'], 'safe'],
         ];
     }
 
@@ -62,17 +62,20 @@ class CommentSearch extends Comment
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'art_id' => $this->art_id,
-            'user_id' => $this->user_id,
-            'is_top' => $this->is_top,
-            'to_comment_id' => $this->to_comment_id,
+            'entityId' => $this->entityId,
+            'parentId' => $this->parentId,
+            'level' => $this->level,
+            'createdBy' => $this->createdBy,
+            'updatedBy' => $this->updatedBy,
             'status' => $this->status,
-            'count_up' => $this->count_up,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
         ]);
 
-        $query->andFilterWhere(['like', 'comment', $this->comment]);
+        $query->andFilterWhere(['like', 'entity', $this->entity])
+            ->andFilterWhere(['like', 'content', $this->content])
+            ->andFilterWhere(['like', 'relatedTo', $this->relatedTo])
+            ->andFilterWhere(['like', 'url', $this->url]);
 
         return $dataProvider;
     }

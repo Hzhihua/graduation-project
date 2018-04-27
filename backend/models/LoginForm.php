@@ -11,15 +11,15 @@ use yii\base\NotSupportedException;
  */
 class LoginForm extends Model
 {
-    public $verifyCode = '123';
+    public $verifyCode;
     /**
      * @var string
      */
-    public $username = '';
+    public $username;
     /**
      * @var string
      */
-    public $password = '';
+    public $password;
     /**
      * @var bool
      */

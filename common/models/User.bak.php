@@ -13,24 +13,19 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property int $id
  * @property string $username
- * @property string $email
- * @property string $password_hash
  * @property string $auth_key
- * @property int $confirmed_at
- * @property string $unconfirmed_email
- * @property int $blocked_at
- * @property string $registration_ip
+ * @property string $password_hash
+ * @property string $password_reset_token
+ * @property string $email
+ * @property int $status
  * @property int $created_at
  * @property int $updated_at
- * @property int $flags
- * @property int $last_login_at
- *
- * @property Profile $profile
- * @property SocialAccount[] $socialAccounts
- * @property Token[] $tokens
  */
-class User extends ActiveRecord implements IdentityInterface
+class UserBak extends ActiveRecord implements IdentityInterface
 {
+    const STATUS_DELETED = 0;
+    const STATUS_ACTIVE = 10;
+
     /**
      * @inheritdoc
      */
@@ -45,15 +40,23 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['username', 'email', 'password_hash', 'auth_key', 'created_at', 'updated_at'], 'required'],
-            [['confirmed_at', 'blocked_at', 'created_at', 'updated_at', 'flags', 'last_login_at'], 'integer'],
-            [['username', 'email', 'unconfirmed_email'], 'string', 'max' => 255],
-            [['password_hash'], 'string', 'max' => 60],
-            [['auth_key'], 'string', 'max' => 32],
-            [['registration_ip'], 'string', 'max' => 45],
-            [['username'], 'unique'],
-            [['email'], 'unique'],
+            ['status', 'default', 'value' => self::STATUS_ACTIVE],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
+            [['status', 'created_at', 'updated_at'], 'integer'],
+            [['username', 'auth_key'], 'string', 'max' => 32],
+            [['password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
         ]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
     }
 
     /**
@@ -65,28 +68,20 @@ class User extends ActiveRecord implements IdentityInterface
             // 添加数据时允许接受的字段
             'insert' => [
                 'username',
-                'email',
-                'password_hash',
                 'auth_key',
-                'confirmed_at',
-                'unconfirmed_email',
-                'blocked_at',
-                'registration_ip',
-                'flags',
-                'last_login_at',
+                'password_hash',
+                'password_reset_token',
+                'email',
+                'status',
             ],
             // 更新数据时允许接受的字段
             'update' => [
                 'username',
-                'email',
-                'password_hash',
                 'auth_key',
-                'confirmed_at',
-                'unconfirmed_email',
-                'blocked_at',
-                'registration_ip',
-                'flags',
-                'last_login_at',
+                'password_hash',
+                'password_reset_token',
+                'email',
+                'status',
             ],
         ];
     }
@@ -99,52 +94,14 @@ class User extends ActiveRecord implements IdentityInterface
         return array_merge(parent::attributeLabels(), [
             'id' => Yii::t('common', 'ID'),
             'username' => Yii::t('common', 'Username'),
-            'email' => Yii::t('common', 'Email'),
-            'password_hash' => Yii::t('common', 'Password Hash'),
             'auth_key' => Yii::t('common', 'Auth Key'),
-            'confirmed_at' => Yii::t('common', 'Confirmed At'),
-            'unconfirmed_email' => Yii::t('common', 'Unconfirmed Email'),
-            'blocked_at' => Yii::t('common', 'Blocked At'),
-            'registration_ip' => Yii::t('common', 'Registration Ip'),
+            'password_hash' => Yii::t('common', 'Password Hash'),
+            'password_reset_token' => Yii::t('common', 'Password Reset Token'),
+            'email' => Yii::t('common', 'Email'),
+            'status' => Yii::t('common', 'Status'),
             'created_at' => Yii::t('common', 'Created At'),
             'updated_at' => Yii::t('common', 'Updated At'),
-            'flags' => Yii::t('common', 'Flags'),
-            'last_login_at' => Yii::t('common', 'Last Login At'),
         ]);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            TimestampBehavior::class,
-        ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProfile()
-    {
-        return $this->hasOne(Profile::class, ['user_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSocialAccounts()
-    {
-        return $this->hasMany(SocialAccount::class, ['user_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTokens()
-    {
-        return $this->hasMany(Token::class, ['user_id' => 'id']);
     }
 
     /**
@@ -152,7 +109,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return static::findOne(['id' => $id]);
+        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -174,7 +131,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findByUsername($username)
     {
-        return static::findOne(['username' => $username]);
+        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -190,6 +147,7 @@ class User extends ActiveRecord implements IdentityInterface
         }
         return static::findOne([
             'password_reset_token' => $token,
+            'status' => self::STATUS_ACTIVE,
         ]);
     }
 
@@ -277,4 +235,5 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
 }

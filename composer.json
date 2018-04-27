@@ -25,7 +25,9 @@
         "mdmsoft/yii2-admin": "^2.0@dev",
         "dektrium/yii2-user": "^0.9.0@dev",
         "yii2mod/yii2-comments": "*",
-        "developit/yii2-captcha": "*"
+        "developit/yii2-captcha": "*",
+        "jumper423/yii2-captcha": "*",
+        "myzero1/yii2-captcha": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

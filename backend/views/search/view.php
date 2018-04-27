@@ -26,31 +26,18 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= DetailView::widget([
             'model' => $model,
             'attributes' => [
-                'art_id',
-                'user_id',
-                [
-                    'attribute' => 'is_top',
-                    'value' => function ($model) {
-                        if ($model->is_top) return '是';
-                        else return '否';
-                    },
-                ],
-                'to_comment_id',
-                'comment',
+                'entity',
+                'entityId',
+                'content:ntext',
+                'parentId',
+                'level',
+                'createdBy',
+                'updatedBy',
+                'relatedTo',
+                'url:ntext',
                 'status',
-                'count_up',
-                [
-                    'attribute' => 'created_at',
-                    'value' => function ($model) {
-                        return Date::show($model->created_at);
-                    },
-                ],
-                [
-                    'attribute' => 'updated_at',
-                    'value' => function ($model) {
-                        return Date::show($model->updated_at);
-                    },
-                ],
+                'createdAt',
+                'updatedAt',
             ],
         ]) ?>
     </div>

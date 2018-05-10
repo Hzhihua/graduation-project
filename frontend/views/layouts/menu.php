@@ -51,7 +51,7 @@ $this->registerCss($css);
             <ul class="nav">
 
                 <li class="waves-block waves-effect">
-                    <a href="<?= Url::to(['/'])?>">
+                    <a href="<?= Url::to(['/index'])?>">
                         <i class="icon icon-lg icon-home"></i>
                         <?= Yii::t('frontend', 'Home') ?>
                     </a>

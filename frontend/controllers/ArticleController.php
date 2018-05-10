@@ -20,8 +20,9 @@ class ArticleController extends Controller
     private $_articleModel = null;
 
     /**
-     * @param \yii\base\Action $action
+     * @param $action
      * @return bool
+     * @throws BadRequestHttpException
      */
     public function beforeAction($action)
     {
@@ -35,6 +36,7 @@ class ArticleController extends Controller
 
     /**
      * @return string
+     * @throws BadRequestHttpException
      */
     public function actionView()
     {
@@ -52,6 +54,7 @@ class ArticleController extends Controller
     /**
      * 获取文章标题信息
      * @return string
+     * @throws BadRequestHttpException
      */
     public function header()
     {
@@ -63,6 +66,7 @@ class ArticleController extends Controller
     /**
      * 获取评论信息
      * @return string
+     * @throws BadRequestHttpException
      */
     public function comment()
     {
@@ -74,6 +78,7 @@ class ArticleController extends Controller
     /**
      * 文章内容，包括版权信息，分类信息
      * @return string
+     * @throws BadRequestHttpException
      */
     public function content()
     {
@@ -89,6 +94,7 @@ class ArticleController extends Controller
     /**
      * 文章侧边目录栏
      * @return string
+     * @throws BadRequestHttpException
      */
     public function toc()
     {
@@ -100,6 +106,7 @@ class ArticleController extends Controller
     /**
      * 版权信息
      * @return string
+     * @throws BadRequestHttpException
      */
     public function copyright()
     {
@@ -111,6 +118,7 @@ class ArticleController extends Controller
     /**
      * 文章所属分类信息
      * @return string
+     * @throws BadRequestHttpException
      */
     public function footer()
     {
@@ -124,6 +132,7 @@ class ArticleController extends Controller
     /**
      * 分享按钮
      * @return string
+     * @throws BadRequestHttpException
      */
     public function share()
     {
@@ -136,6 +145,7 @@ class ArticleController extends Controller
     /**
      * 文章上一篇，下一篇
      * @return string
+     * @throws BadRequestHttpException
      */
     public function nav()
     {
@@ -163,7 +173,7 @@ class ArticleController extends Controller
                 throw new BadRequestHttpException($errorMsg);
             }
 
-            $this->_articleData = Article::find()->where(['id' => $this->_id])->with('articleStatus', 'articleAndCategory', 'articleAndTag')->asArray()->one();
+            $this->_articleData = Article::find()->where(['<=', 'public_time', time()])->where(['id' => $this->_id])->with('articleStatus', 'articleAndCategory', 'articleAndTag')->asArray()->one();
         }
 
         if (empty($this->_articleData)) {

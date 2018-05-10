@@ -55,7 +55,7 @@ return [
             //用于表明urlManager是否启用URL美化功能，在Yii1.1中称为path格式URL，
             // Yii2.0中改称美化。
             // 默认不启用。但实际使用中，特别是产品环境，一般都会启用。
-            'enablePrettyUrl' => true,
+            'enablePrettyUrl' => false,
             // 是否启用严格解析，如启用严格解析，要求当前请求应至少匹配1个路由规则，
             // 否则认为是无效路由。
             // 这个选项仅在 enablePrettyUrl 启用后才有效。

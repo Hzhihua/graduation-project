@@ -43,6 +43,7 @@ class ArchivesController extends Controller
     {
         return Article::find()
             ->select(['id', 'title', 'description', 'public_time'])
+            ->where(['<=', 'public_time', time()])
             ->orderBy(['public_time' => SORT_DESC]);
     }
 

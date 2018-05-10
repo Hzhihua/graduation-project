@@ -38,8 +38,9 @@ return [
         ],
         'article' => [
             'class' => 'hzhihua\articles\Module',
-//            'editor' => 'ckeditor',
-//            'editorDataHandle' => 'hzhihua\articles\Ckeditor',
+            'editor' => 'ckeditor',
+            'editorDataHandle' => 'hzhihua\articles\Ckeditor',
+//            'editorViewFile' => '@backend/views/article/_ckeditor.php',
         ],
     ],
     'aliases' => [

@@ -18,7 +18,6 @@
         "yiisoft/yii2": "~2.0.6",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
-        "hzhihua/yii2-dump": "dev-master",
         "hzhihua/yii2-articles": "dev-master",
         "hzhihua/yii2-frappe-charts": "dev-master",
         "dmstr/yii2-adminlte-asset": "2.*",
@@ -27,7 +26,8 @@
         "yii2mod/yii2-comments": "*",
         "developit/yii2-captcha": "*",
         "jumper423/yii2-captcha": "*",
-        "myzero1/yii2-captcha": "dev-master"
+        "myzero1/yii2-captcha": "dev-master",
+        "hzhihua/yii2-dump": "1.0.3"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
@@ -47,6 +47,11 @@
 				}
 			}
 		}
+    },
+    "autoload": {
+        "psr-4": {
+            "hzhihua\\actions\\": "backend/actions/yii2-bootstrap-fileinput"
+        }
     },
     "repositories": [
         {

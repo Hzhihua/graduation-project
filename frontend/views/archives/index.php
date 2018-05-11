@@ -53,7 +53,7 @@ foreach ($data as $k => $v) {
                 </h3>
 
                 <div class="post-content" id="post-content" itemprop="postContent" style="height: 75px">
-                    <?= $__v['description'] ?>
+                    <?= mb_substr($__v['description'], 0, 85, 'utf-8') ?>
                     <?= Html::a(
                         Yii::t('frontend', 'Read More'),
                         [

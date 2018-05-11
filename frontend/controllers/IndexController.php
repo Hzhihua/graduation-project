@@ -42,9 +42,9 @@ class IndexController extends Controller
     public static function getData()
     {
         return Article::find()
-            ->select(['id', 'title', 'description', 'public_time'])
+            ->select(['id', 'title', 'description', 'public_time', 'is_top'])
             ->where(['<=', 'public_time', time()])
-            ->orderBy(['public_time' => SORT_DESC]);
+            ->orderBy(['is_top' => SORT_DESC, 'public_time' => SORT_DESC, 'id' => SORT_DESC]);
     }
 
 }

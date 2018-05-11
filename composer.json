@@ -27,7 +27,8 @@
         "developit/yii2-captcha": "*",
         "jumper423/yii2-captcha": "*",
         "myzero1/yii2-captcha": "dev-master",
-        "hzhihua/yii2-dump": "1.0.3"
+        "hzhihua/yii2-dump": "1.0.3",
+        "kartik-v/yii2-widget-select2": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

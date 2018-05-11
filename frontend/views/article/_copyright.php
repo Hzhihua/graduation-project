@@ -24,11 +24,5 @@ $absoluteUrl = Url::to('', true);
         转载务必注明原文出处！<br>原文链接：<?= Html::a($absoluteUrl, $absoluteUrl, ['target' => '_self'])?>
 
     </div>
-    <footer>
-<!--        --><?//= Html::a(
-//                Html::img('static/18823393', ['alt' => 'Hzhihua']).'Hzhihua',
-//                Yii::$app->getRequest()->hostInfo
-//        )?>
-    </footer>
 </blockquote>
 <!--版权信息结束-->

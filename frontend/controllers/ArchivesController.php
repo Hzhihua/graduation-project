@@ -24,7 +24,7 @@ class ArchivesController extends Controller
      */
     public function actionIndex()
     {
-        $articleData = self::getData()->asArray()->all();
+        $articleData = self::getData()->orderBy(['created_at' => SORT_DESC, 'id' => SORT_DESC])->asArray()->all();
         $article_id = ArrayHelper::getColumn($articleData, 'id');
 
         $data = [
@@ -44,7 +44,7 @@ class ArchivesController extends Controller
         return Article::find()
             ->select(['id', 'title', 'description', 'public_time'])
             ->where(['<=', 'public_time', time()])
-            ->orderBy(['public_time' => SORT_DESC]);
+            ->orderBy(['public_time' => SORT_DESC, 'id' => SORT_DESC]);
     }
 
 }

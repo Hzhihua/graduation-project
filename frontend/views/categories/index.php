@@ -51,7 +51,7 @@ $this->params['bar'] = $this->render('_bar', ['categoriesData' => $categoriesDat
                 </h3>
 
                 <div class="post-content" id="post-content" itemprop="postContent" style="height: 75px">
-                    <?= $__v['article']['description'] ?>
+                    <?= mb_substr($__v['article']['description'], 0, 85, 'utf-8') ?>
                     <?= Html::a(
                         Yii::t('frontend', 'Read More'),
                         [

@@ -28,7 +28,7 @@ class TagsController extends Controller
     public function actionIndex()
     {
         $data = [
-            'data' => self::getData()->asArray()->all(),
+            'data' => self::getData()->orderBy(['created_at' => SORT_DESC, 'id' => SORT_DESC])->asArray()->all(),
             'tagsData' => self::getAllTags()->asArray()->all(),
         ];
 

@@ -29,6 +29,10 @@ $this->params['title'] = '黄志华的博客';
                         'article_categories' => $article_categories,
                     ]) ?>
 
+                    <span>
+                        <?= $_v['is_top'] ? '置顶' : '' ?>
+                    </span>
+
                 </div>
 
                 <h3 class="post-title" itemprop="name">

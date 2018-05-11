@@ -28,7 +28,7 @@ class CategoriesController extends Controller
     public function actionIndex()
     {
         $data = [
-            'data' => self::getData()->asArray()->all(),
+            'data' => self::getData()->orderBy(['created_at' => SORT_DESC, 'id' => SORT_DESC])->asArray()->all(),
             'categoriesData' => self::getAllCategories()->asArray()->all(),
         ];
 
@@ -72,7 +72,7 @@ class CategoriesController extends Controller
     {
         return ArticleCategory::find()
             ->select(['id', 'name', 'description', 'created_at'])
-            ->orderBy(['created_at' => SORT_DESC])
+            ->orderBy(['created_at' => SORT_DESC, 'id' => SORT_DESC])
             ->with('articleAndCategory');
     }
 
@@ -83,7 +83,7 @@ class CategoriesController extends Controller
     {
         return ArticleCategory::find()
             ->select(['id','name','created_at'])
-            ->orderBy(['created_at' => SORT_DESC]);
+            ->orderBy(['created_at' => SORT_DESC, 'id' => SORT_DESC]);
     }
 
     /**

@@ -30,10 +30,10 @@ $updated_at = Date::show($data['updated_at']);
             <?php endforeach;?>
         </ul>
 
-        <span id="busuanzi_container_page_pv" title="<?= Yii::t('frontend', 'Counts')?>" style="display: inline;">
-            <i class="icon icon-eye icon-pr"></i>
-            <span id="busuanzi_value_page_pv">7</span>
-        </span>
+<!--        <span id="busuanzi_container_page_pv" title="--><?//= Yii::t('frontend', 'Counts')?><!--" style="display: inline;">-->
+<!--            <i class="icon icon-eye icon-pr"></i>-->
+<!--            <span id="busuanzi_value_page_pv">7</span>-->
+<!--        </span>-->
     </div>
 
     <div class="post-content" id="post-content" itemprop="postContent">

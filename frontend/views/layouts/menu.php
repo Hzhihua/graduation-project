@@ -29,7 +29,7 @@ $this->registerCss($css);
         <a href="javascript:" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
             <i class="icon icon-lg icon-close"></i>
         </a>
-        <div class="brand-wrap" style="background-image:url(<?= Url::to('/img/brand.jpg') ?>)">
+        <div class="brand-wrap" style="background-image:url(<?= rtrim(Yii::$app->params['baseUrl'], '/') . '/brand.jpg' ?>)">
             <div class="brand">
                 <a href="<?= Url::to(['/'])?>" class="avatar waves-effect waves-circle waves-light">
                     <?= Html::img(Url::to('https://avatars3.githubusercontent.com/u/18823393?s=460&v=4'))?>

@@ -87,7 +87,7 @@ $this->registerCss($css);
 
                 <li class="waves-block waves-effect">
                     <?php if (Yii::$app->getUser()->isGuest): ?>
-                    <a href="<?= Url::to(['/user/login'])?>">
+                    <a href="<?= Url::to(['/user/security/login'])?>">
                         <i class="icon icon-lg icon-user"></i>
                         <?= Yii::t('frontend', 'Sign in') ?>
                     </a>

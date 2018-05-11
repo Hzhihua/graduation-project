@@ -25,7 +25,7 @@ $updated_at = Date::show($data['updated_at']);
         <ul class="article-category-list">
             <?php foreach ($data['articleAndCategory'] as $value):?>
             <li class="article-category-list-item">
-                <a class="article-category-list-link" href="<?= Url::to(['/category/view', 'id' => $value['articleCategory']['id']])?>"><?= $value['articleCategory']['name']?></a>
+                <a class="article-category-list-link" href="<?= Url::to(['/categories/view', 'id' => $value['articleCategory']['id']])?>"><?= $value['articleCategory']['name']?></a>
             </li>
             <?php endforeach;?>
         </ul>

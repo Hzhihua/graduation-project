@@ -19,7 +19,7 @@ $relatedTo = Yii::$app->getUser()->isGuest
         );
 
 $emptyText = Yii::t('frontend', 'No comments found.') . Yii::$app->getUser()->isGuest ?
-    Html::a(Yii::t('frontend', 'Post a comment'), ['/user/login'])
+    Html::a(Yii::t('frontend', 'Post a comment'), ['/user/security/login'])
     : '';
 
 ?>

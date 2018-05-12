@@ -93,7 +93,7 @@ $this->registerCss($css);
                     </a>
 
                     <?php else: ?>
-                    <a href="<?= Url::to(['/user/logout'])?>" data-method="post" onclick="return confirm('<?= Yii::t('frontend', 'Are you sure to logout?') ?>')">
+                    <a href="<?= Url::to(['/user/security/logout'])?>" data-method="post" onclick="return confirm('<?= Yii::t('frontend', 'Are you sure to logout?') ?>')">
                         <i class="icon icon-lg icon-user"></i>
                         <?= Yii::$app->getUser()->identity->username ?>
                     </a>
